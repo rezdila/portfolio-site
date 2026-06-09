@@ -191,7 +191,15 @@ function loadSection(sectionKey) {
   if (titleEl) titleEl.textContent = titles[sectionKey] || sectionKey;
 
   // Hide all sections, show active
-  document.querySelectorAll('.admin-section').forEach(s => s.style.display = 'none');
+  document.querySelectorAll('.admin-section').forEach(s => {
+    s.style.display = 'none';
+    // Clear and hide any open form container in the hidden sections to avoid ID collisions
+    const formContainer = s.querySelector('[id$="-form-container"]');
+    if (formContainer && s.id !== `section-${sectionKey}`) {
+      formContainer.innerHTML = '';
+      formContainer.style.display = 'none';
+    }
+  });
   const activeSection = document.getElementById(`section-${sectionKey}`);
   if (activeSection) {
     activeSection.style.display = 'block';
@@ -720,13 +728,16 @@ function renderProofUploader(item) {
 function initProofUpload(sectionKey, item) {
   if (!item) return; // Proofs only for existing items
 
-  const dropArea = document.getElementById('proof-drop-area');
-  const fileInput = document.getElementById('proof-file-input');
-  const youtubeInput = document.getElementById('youtube-proof-url');
-  const addYoutubeBtn = document.getElementById('add-youtube-proof-btn');
-  const linkUrlInput = document.getElementById('link-proof-url');
-  const linkNameInput = document.getElementById('link-proof-name');
-  const addLinkBtn = document.getElementById('add-link-proof-btn');
+  const container = document.getElementById(`${sectionKey}-form-container`);
+  if (!container) return;
+
+  const dropArea = container.querySelector('#proof-drop-area');
+  const fileInput = container.querySelector('#proof-file-input');
+  const youtubeInput = container.querySelector('#youtube-proof-url');
+  const addYoutubeBtn = container.querySelector('#add-youtube-proof-btn');
+  const linkUrlInput = container.querySelector('#link-proof-url');
+  const linkNameInput = container.querySelector('#link-proof-name');
+  const addLinkBtn = container.querySelector('#add-link-proof-btn');
 
   if (dropArea && fileInput) {
     dropArea.addEventListener('click', () => fileInput.click());
@@ -755,7 +766,7 @@ function initProofUpload(sectionKey, item) {
         item.proofs.push(proof);
         youtubeInput.value = '';
         showToast('YouTube proof added!', 'success');
-        refreshProofList(item);
+        refreshProofList(sectionKey, item);
       }
     });
   }
@@ -783,7 +794,7 @@ function initProofUpload(sectionKey, item) {
         linkUrlInput.value = '';
         linkNameInput.value = '';
         showToast('Proof URL added!', 'success');
-        refreshProofList(item);
+        refreshProofList(sectionKey, item);
       } else {
         showToast('Please enter a valid URL.', 'warning');
       }
@@ -791,7 +802,7 @@ function initProofUpload(sectionKey, item) {
   }
 
   // Remove proof buttons using event delegation so dynamic refreshes keep remove buttons working
-  const proofList = document.getElementById('proof-list');
+  const proofList = container.querySelector('#proof-list');
   if (proofList) {
     proofList.addEventListener('click', (e) => {
       const btn = e.target.closest('.proof-remove-btn');
@@ -799,7 +810,7 @@ function initProofUpload(sectionKey, item) {
         const index = parseInt(btn.dataset.index);
         DataManager.removeProof(sectionKey, item.id, index);
         item.proofs.splice(index, 1);
-        refreshProofList(item);
+        refreshProofList(sectionKey, item);
         showToast('Proof removed', 'success');
       }
     });
@@ -840,11 +851,13 @@ async function handleProofFiles(files, sectionKey, item) {
       showToast(`Failed to upload ${file.name}: ${err.message}`, 'error');
     }
   }
-  refreshProofList(item);
+  refreshProofList(sectionKey, item);
 }
 
-function refreshProofList(item) {
-  const proofList = document.getElementById('proof-list');
+function refreshProofList(sectionKey, item) {
+  const container = document.getElementById(`${sectionKey}-form-container`);
+  if (!container) return;
+  const proofList = container.querySelector('#proof-list');
   if (!proofList) return;
   const proofs = item.proofs || [];
   proofList.innerHTML = proofs.map((proof, index) => `
