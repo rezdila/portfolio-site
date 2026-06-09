@@ -2,6 +2,7 @@
 // Centralised CRUD layer that persists portfolio data in localStorage.
 
 import { defaultPortfolioData } from './data.js';
+import { sha256 } from './utils.js';
 
 const STORAGE_KEY = 'yuresh_portfolio_data';
 
@@ -535,21 +536,34 @@ export const DataManager = {
   /**
    * Verify a password against the stored admin password.
    */
-  verifyPassword(password) {
+  async verifyPassword(password) {
     const data = this.loadData();
-    return data.adminPassword === password;
+    
+    // Auto-migrate plain text password in data if it's not a SHA-256 hash yet
+    const isSha256 = (str) => typeof str === 'string' && str.length === 64 && /^[0-9a-f]+$/i.test(str);
+    
+    if (!isSha256(data.adminPassword)) {
+      // It's plain text! Hash it and save it.
+      const hashed = await sha256(data.adminPassword);
+      data.adminPassword = hashed;
+      this.saveData(data);
+    }
+    
+    const inputHash = await crypto.subtle ? await sha256(password) : password;
+    return data.adminPassword === inputHash;
   },
 
   /**
    * Update the admin password.
    */
-  updatePassword(newPassword) {
+  async updatePassword(newPassword) {
     if (!newPassword || typeof newPassword !== 'string' || newPassword.length < 4) {
       console.warn('[DataManager] Password must be at least 4 characters.');
       return false;
     }
     const data = this.loadData();
-    data.adminPassword = newPassword;
+    const hashed = await sha256(newPassword);
+    data.adminPassword = hashed;
     this.saveData(data);
     return true;
   },

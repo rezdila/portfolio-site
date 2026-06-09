@@ -36,9 +36,10 @@ function initAuth() {
     if (e.key === 'Enter') attemptLogin();
   });
 
-  function attemptLogin() {
+  async function attemptLogin() {
     const password = passwordInput.value;
-    if (DataManager.verifyPassword(password)) {
+    const isValid = await DataManager.verifyPassword(password);
+    if (isValid) {
       sessionStorage.setItem('admin_authenticated', 'true');
       passwordScreen.style.display = 'none';
       adminApp.style.display = 'flex';
@@ -1445,14 +1446,15 @@ function renderSettingsForm() {
   }
 
   // Password form
-  document.getElementById('password-form').addEventListener('submit', (e) => {
+  document.getElementById('password-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const fd = new FormData(e.target);
     const current = fd.get('currentPassword');
     const newPw = fd.get('newPassword');
     const confirm = fd.get('confirmPassword');
 
-    if (!DataManager.verifyPassword(current)) {
+    const isCurrentValid = await DataManager.verifyPassword(current);
+    if (!isCurrentValid) {
       showToast('Current password is incorrect', 'error');
       return;
     }
@@ -1465,7 +1467,7 @@ function renderSettingsForm() {
       return;
     }
 
-    DataManager.updatePassword(newPw);
+    await DataManager.updatePassword(newPw);
     showToast('Password updated successfully!', 'success');
     e.target.reset();
   });
