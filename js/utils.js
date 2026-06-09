@@ -78,6 +78,26 @@ export function parseYouTubeUrl(url) {
 }
 
 /**
+ * Extract a Google Drive file ID from various URL formats.
+ */
+export function parseGoogleDriveUrl(url) {
+  if (!url || typeof url !== 'string') return null;
+
+  const patterns = [
+    /\/file\/d\/([a-zA-Z0-9_-]+)/,
+    /id=([a-zA-Z0-9_-]+)/,
+    /\/d\/([a-zA-Z0-9_-]+)/,
+  ];
+
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match && match[1]) return match[1];
+  }
+
+  return null;
+}
+
+/**
  * Create an iframe DOM element that embeds the given YouTube video.
  */
 export function createYouTubeEmbed(videoId) {

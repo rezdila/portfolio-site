@@ -3,7 +3,7 @@
  * Reads data from DataManager and populates the HTML
  */
 import { DataManager } from './dataManager.js';
-import { parseYouTubeUrl, createYouTubeEmbed, truncateText, animateCounter, showToast, createLightbox } from './utils.js';
+import { parseYouTubeUrl, parseGoogleDriveUrl, createYouTubeEmbed, truncateText, animateCounter, showToast, createLightbox } from './utils.js';
 
 /**
  * Show or hide an entire <section> element based on whether it has content.
@@ -824,10 +824,13 @@ function renderProofs(proofs) {
 
   const items = proofs.map((proof) => {
     const videoId = proof.type === 'youtube' ? parseYouTubeUrl(proof.url) : null;
+    const driveId = parseGoogleDriveUrl(proof.url);
 
     // Build the thumbnail/preview area
     let thumbHtml;
-    if (proof.type === 'image') {
+    if (driveId) {
+      thumbHtml = `<img src="https://drive.google.com/thumbnail?id=${driveId}&sz=w600" alt="${proof.name || 'Google Drive File'}" class="proof-thumbnail" loading="lazy" />`;
+    } else if (proof.type === 'image') {
       thumbHtml = `<img src="${proof.url}" alt="${proof.name || 'Proof image'}" class="proof-thumbnail" loading="lazy" />`;
     } else if (proof.type === 'youtube' && videoId) {
       thumbHtml = `
@@ -845,13 +848,13 @@ function renderProofs(proofs) {
       thumbHtml = `<div class="proof-icon-wrapper"><span class="proof-icon">📎</span><span class="proof-icon-label">${proof.type || 'File'}</span></div>`;
     }
 
-    const isVisual = proof.type === 'image' || (proof.type === 'youtube' && videoId);
+    const isVisual = !!driveId || proof.type === 'image' || (proof.type === 'youtube' && videoId);
     const nameHtml = isVisual ? '' : `<span class="proof-name">${proof.name || proof.type}</span>`;
     const safeUrl = (proof.url || '').replace(/"/g, '&quot;');
     const tooltipText = (proof.name || proof.type).replace(/"/g, '&quot;');
 
     return `
-      <div class="proof-item" data-type="${proof.type}" data-url="${safeUrl}" data-vid="${videoId || ''}" title="${tooltipText}" role="button" tabindex="0" onclick="window.__openProof(this)" onkeydown="if(event.key==='Enter')window.__openProof(this)">
+      <div class="proof-item" data-type="${proof.type}" data-url="${safeUrl}" data-vid="${videoId || ''}" data-driveid="${driveId || ''}" title="${tooltipText}" role="button" tabindex="0" onclick="window.__openProof(this)" onkeydown="if(event.key==='Enter')window.__openProof(this)">
         ${thumbHtml}
         ${nameHtml}
         <div class="proof-overlay"><span>🔍 View</span></div>
@@ -866,11 +869,13 @@ window.__openProof = function (element) {
   const type = element.dataset.type;
   const url = element.dataset.url;
   const vid = element.dataset.vid;
+  const driveId = element.dataset.driveid;
 
-  if (!url && !vid) return;
+  if (!url && !vid && !driveId) return;
 
-  if (type === 'youtube') {
-    // Pass the raw URL — createLightbox's 'youtube' branch will extract the ID
+  if (driveId) {
+    createLightbox(`https://drive.google.com/file/d/${driveId}/preview`, 'pdf');
+  } else if (type === 'youtube') {
     createLightbox(url, 'youtube');
   } else if (type === 'pdf') {
     createLightbox(url, 'pdf');
