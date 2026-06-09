@@ -9,7 +9,7 @@ export const defaultPortfolioData = {
     profileImage: 'assets/images/profile.png',
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/yuresh-dilshan',
-      github: 'https://github.com/yureshdilshan',
+      github: 'https://github.com/rezdila',
       facebook: 'https://www.facebook.com/share/17crFwDfRo/',
       instagram: 'https://www.instagram.com/yureiii__?igsh=eDA2ZDBvN2JxNWY2',
       threads: 'https://www.threads.com/@yureiii__',

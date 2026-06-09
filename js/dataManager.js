@@ -89,6 +89,12 @@ export const DataManager = {
         migrated = true;
       }
 
+      // Auto-migrate old github link
+      if (parsed.personal && parsed.personal.socialLinks && parsed.personal.socialLinks.github === 'https://github.com/yureshdilshan') {
+        parsed.personal.socialLinks.github = 'https://github.com/rezdila';
+        migrated = true;
+      }
+
       // Remove placeholder qualification items from stored data
       const isPlaceholder = (item) =>
         item.title && (
