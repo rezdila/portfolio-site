@@ -335,148 +335,99 @@ function renderPersonalForm() {
 
   const data = DataManager.getSection('personal');
 
-  container.innerHTML = `
-    <form id="personal-form" class="admin-form">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="personal-fullName">Full Name</label>
-          <input type="text" id="personal-fullName" name="fullName" value="${escapeHtml(data.fullName || '')}" required />
-        </div>
-        <div class="form-group">
-          <label for="personal-title">Professional Title</label>
-          <input type="text" id="personal-title" name="title" value="${escapeHtml(data.title || '')}" />
-        </div>
-      </div>
+  // Populate fields safely
+  const setVal = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.value = val || '';
+  };
 
-      <div class="form-group">
-        <label for="personal-bio">Bio</label>
-        <textarea id="personal-bio" name="bio" rows="4">${escapeHtml(data.bio || '')}</textarea>
-      </div>
+  setVal('personal-fullname', data.fullName);
+  setVal('personal-title', data.title);
+  setVal('personal-bio', data.bio);
+  setVal('personal-email', data.email);
+  setVal('personal-location', data.location);
+  setVal('personal-cv', data.cvUrl);
+  setVal('personal-linkedin', data.socialLinks?.linkedin);
+  setVal('personal-github', data.socialLinks?.github);
+  setVal('personal-facebook', data.socialLinks?.facebook);
+  setVal('personal-instagram', data.socialLinks?.instagram);
+  setVal('personal-threads', data.socialLinks?.threads);
+  setVal('personal-tiktok', data.socialLinks?.tiktok);
+  setVal('personal-whatsapp', data.socialLinks?.whatsapp);
+  setVal('personal-website', data.socialLinks?.website);
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="personal-email">Email</label>
-          <input type="email" id="personal-email" name="email" value="${escapeHtml(data.email || '')}" />
-        </div>
-        <div class="form-group">
-          <label for="personal-location">Location</label>
-          <input type="text" id="personal-location" name="location" value="${escapeHtml(data.location || '')}" />
-        </div>
-      </div>
+  // Profile image preview
+  const thumb = document.getElementById('profile-image-thumb');
+  if (thumb) {
+    if (data.profileImage) {
+      thumb.src = data.profileImage;
+      thumb.style.display = 'block';
+      const placeholder = thumb.nextElementSibling;
+      if (placeholder) placeholder.style.display = 'none';
+    } else {
+      thumb.style.display = 'none';
+      const placeholder = thumb.nextElementSibling;
+      if (placeholder) placeholder.style.display = 'flex';
+    }
+  }
 
-      <div class="form-group">
-        <label for="personal-cvUrl">CV Download Link (Google Drive shared link, or local path like assets/cv.pdf)</label>
-        <input type="text" id="personal-cvUrl" name="cvUrl" value="${escapeHtml(data.cvUrl || '')}" placeholder="https://drive.google.com/..." />
-      </div>
-
-      <div class="form-group">
-        <label>Profile Image</label>
-        <div class="file-upload" id="profile-image-upload">
-          ${data.profileImage ? `<img src="${data.profileImage}" class="upload-preview" alt="Profile preview" />` : ''}
-          <div class="upload-placeholder">
-            <span class="upload-icon">📷</span>
-            <span>Click or drag to upload profile photo</span>
-          </div>
-          <input type="file" id="profile-image-input" accept="image/*" class="file-input-hidden" />
-        </div>
-      </div>
-
-      <h3 class="form-section-title">Social Links</h3>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="personal-linkedin">LinkedIn URL</label>
-          <input type="url" id="personal-linkedin" name="linkedin" value="${escapeHtml(data.socialLinks?.linkedin || '')}" />
-        </div>
-        <div class="form-group">
-          <label for="personal-github">GitHub URL</label>
-          <input type="url" id="personal-github" name="github" value="${escapeHtml(data.socialLinks?.github || '')}" />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="personal-facebook">Facebook URL</label>
-          <input type="url" id="personal-facebook" name="facebook" value="${escapeHtml(data.socialLinks?.facebook || '')}" />
-        </div>
-        <div class="form-group">
-          <label for="personal-instagram">Instagram URL</label>
-          <input type="url" id="personal-instagram" name="instagram" value="${escapeHtml(data.socialLinks?.instagram || '')}" />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="personal-threads">Threads URL</label>
-          <input type="url" id="personal-threads" name="threads" value="${escapeHtml(data.socialLinks?.threads || '')}" />
-        </div>
-        <div class="form-group">
-          <label for="personal-tiktok">TikTok URL</label>
-          <input type="url" id="personal-tiktok" name="tiktok" value="${escapeHtml(data.socialLinks?.tiktok || '')}" />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="personal-whatsapp">WhatsApp URL</label>
-          <input type="url" id="personal-whatsapp" name="whatsapp" value="${escapeHtml(data.socialLinks?.whatsapp || '')}" />
-        </div>
-        <div class="form-group">
-          <label for="personal-website">Website URL</label>
-          <input type="url" id="personal-website" name="website" value="${escapeHtml(data.socialLinks?.website || '')}" />
-        </div>
-      </div>
-
-      <button type="submit" class="admin-btn admin-btn-primary">💾 Save Personal Info</button>
-    </form>
-  `;
-
-  // Form submit handler
+  // Prevent multiple event bindings if this tab is clicked multiple times
   const form = document.getElementById('personal-form');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const updated = {
-      ...data,
-      fullName: formData.get('fullName'),
-      title: formData.get('title'),
-      bio: formData.get('bio'),
-      email: formData.get('email'),
-      location: formData.get('location'),
-      cvUrl: formData.get('cvUrl'),
-      socialLinks: {
-        linkedin: formData.get('linkedin'),
-        github: formData.get('github'),
-        facebook: formData.get('facebook'),
-        instagram: formData.get('instagram'),
-        threads: formData.get('threads'),
-        tiktok: formData.get('tiktok'),
-        whatsapp: formData.get('whatsapp'),
-        website: formData.get('website')
-      }
-    };
-    DataManager.updateSection('personal', updated);
-    showToast('Personal info saved!', 'success');
-  });
+  if (form && !form.dataset.initialized) {
+    form.dataset.initialized = 'true';
 
-  // Profile image upload
-  const imageUpload = document.getElementById('profile-image-upload');
-  const imageInput = document.getElementById('profile-image-input');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const updated = {
+        ...data,
+        fullName: document.getElementById('personal-fullname').value,
+        title: document.getElementById('personal-title').value,
+        bio: document.getElementById('personal-bio').value,
+        email: document.getElementById('personal-email').value,
+        location: document.getElementById('personal-location').value,
+        cvUrl: document.getElementById('personal-cv').value,
+        socialLinks: {
+          linkedin: document.getElementById('personal-linkedin').value,
+          github: document.getElementById('personal-github').value,
+          facebook: document.getElementById('personal-facebook').value,
+          instagram: document.getElementById('personal-instagram').value,
+          threads: document.getElementById('personal-threads').value,
+          tiktok: document.getElementById('personal-tiktok').value,
+          whatsapp: document.getElementById('personal-whatsapp').value,
+          website: document.getElementById('personal-website').value
+        }
+      };
+      DataManager.updateSection('personal', updated);
+      showToast('Personal info saved!', 'success');
+    });
 
-  imageUpload.addEventListener('click', () => imageInput.click());
-  imageUpload.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    imageUpload.classList.add('drag-over');
-  });
-  imageUpload.addEventListener('dragleave', () => {
-    imageUpload.classList.remove('drag-over');
-  });
-  imageUpload.addEventListener('drop', (e) => {
-    e.preventDefault();
-    imageUpload.classList.remove('drag-over');
-    const file = e.dataTransfer.files[0];
-    if (file) handleProfileImage(file, data);
-  });
-  imageInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (file) handleProfileImage(file, data);
-  });
+    // Profile image upload
+    const imageUpload = document.getElementById('profile-image-upload');
+    const imageInput = document.getElementById('personal-profile-image');
+
+    if (imageUpload && imageInput) {
+      imageUpload.addEventListener('click', () => imageInput.click());
+      imageUpload.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        imageUpload.classList.add('drag-over');
+      });
+      imageUpload.addEventListener('dragleave', () => {
+        imageUpload.classList.remove('drag-over');
+      });
+      imageUpload.addEventListener('drop', (e) => {
+        e.preventDefault();
+        imageUpload.classList.remove('drag-over');
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+          handleProfileImage(e.dataTransfer.files[0], data);
+        }
+      });
+      imageInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) {
+          handleProfileImage(e.target.files[0], data);
+        }
+      });
+    }
+  }
 }
 
 async function handleProfileImage(file, data) {
