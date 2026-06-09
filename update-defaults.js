@@ -23,6 +23,9 @@ try {
   // Validate it's parsed as JSON
   const parsed = JSON.parse(content);
   
+  // Force the default data to have a strictly newer timestamp so it overwrites cached localStorage
+  parsed.updatedAt = Date.now();
+  
   // Format the file contents
   const outputContent = `// js/data.js — Real portfolio data for Yuresh Dilshan
 // Generated dynamically from backup file: ${targetFile}

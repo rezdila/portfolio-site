@@ -766,5 +766,5 @@ export const defaultPortfolioData = {
     }
   ],
   "adminPassword": "e42d37a736499aa3df0ddeeb95e54c97bcff3954f5597b8cf8171d362f6dbc43",
-  "updatedAt": 1781037367023
+  "updatedAt": 1781045576271
 };

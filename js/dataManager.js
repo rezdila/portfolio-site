@@ -79,6 +79,17 @@ export const DataManager = {
         return clone(defaultPortfolioData);
       }
       let parsed = JSON.parse(stored);
+
+      // If the default data has a newer timestamp than localStorage, use the default data
+      // This ensures that when the site is updated via the exported JSON, users see the new data!
+      const defaultTime = defaultPortfolioData.updatedAt || 0;
+      const localTime = parsed.updatedAt || 0;
+      if (defaultTime > localTime) {
+        console.log('[DataManager] Default data is newer than localStorage. Overwriting localStorage with default data.');
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultPortfolioData));
+        return clone(defaultPortfolioData);
+      }
+
       let migrated = false;
 
       // Auto-migrate from old placeholder path to the new profile picture
