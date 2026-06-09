@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Admin Panel — Manage your portfolio content, projects, and settings." />
+  <meta name="author" content="Yuresh Dilshan" />
+  <meta name="theme-color" content="#0a0e27" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>Admin Panel | Yuresh Portfolio</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       PASSWORD SCREEN
+  ═══════════════════════════════════════════ -->
+  <div id="password-screen" class="password-screen">
+    <div class="password-screen__card glass-card">
+      <div class="password-screen__header">
+        <span class="nav__monogram">YD</span>
+        <h1 class="password-screen__title">Admin Panel</h1>
+        <p class="password-screen__subtitle">Enter your password to continue</p>
+      </div>
+
+      <div class="password-screen__form">
+        <div class="form-group">
+          <label for="admin-password" class="form-label">Password</label>
+          <div class="password-input-wrapper">
+            <input
+              type="password"
+              id="admin-password"
+              name="password"
+              class="form-input"
+              placeholder="Enter admin password"
+              autocomplete="current-password"
+              required
+            />
+            <button type="button" class="password-toggle-btn" id="password-toggle" aria-label="Toggle password visibility">
+              👁️
+            </button>
+          </div>
+        </div>
+        <button type="button" id="admin-login-btn" class="btn btn--primary btn--glow btn--full">
+          <span>Login</span>
+          <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        </button>
+        <p id="login-error" class="password-screen__error" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       MAIN ADMIN APPLICATION
+  ═══════════════════════════════════════════ -->
+  <div id="admin-app" class="admin-app" style="display: none;">
+
+    <!-- ─── Mobile Sidebar Toggle ─── -->
+    <button class="admin-sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar navigation">
+      <span class="admin-sidebar-toggle__line"></span>
+      <span class="admin-sidebar-toggle__line"></span>
+      <span class="admin-sidebar-toggle__line"></span>
+    </button>
+
+    <!-- ─── Sidebar Overlay (mobile) ─── -->
+    <div class="admin-sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- ═══════════════════════════════════════════
+         SIDEBAR
+    ═══════════════════════════════════════════ -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-sidebar__header">
+        <div class="admin-sidebar__logo">YD</div>
+        <div class="admin-sidebar__brand-text">
+          <div class="admin-sidebar__brand-name">Yuresh</div>
+          <div class="admin-sidebar__brand-sub">Admin Panel</div>
+        </div>
+      </div>
+
+      <nav class="admin-sidebar__nav" aria-label="Admin navigation">
+        <div class="admin-sidebar__section-label">Content</div>
+        <ul class="admin-sidebar__list">
+          <li>
+            <a href="#" class="admin-sidebar__link admin-sidebar__link--active" data-section="personal">
+              <span class="admin-sidebar__icon">👤</span>
+              <span class="admin-sidebar__text">Personal Info</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="education">
+              <span class="admin-sidebar__icon">🎓</span>
+              <span class="admin-sidebar__text">Education</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="professionalQualifications">
+              <span class="admin-sidebar__icon">🏆</span>
+              <span class="admin-sidebar__text">Professional Quals</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="vocationalQualifications">
+              <span class="admin-sidebar__icon">📜</span>
+              <span class="admin-sidebar__text">Vocational Quals</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="experience">
+              <span class="admin-sidebar__icon">💼</span>
+              <span class="admin-sidebar__text">Experience</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="skills">
+              <span class="admin-sidebar__icon">⚡</span>
+              <span class="admin-sidebar__text">Skills</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="competencies">
+              <span class="admin-sidebar__icon">🎯</span>
+              <span class="admin-sidebar__text">Competencies</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="achievements">
+              <span class="admin-sidebar__icon">🏅</span>
+              <span class="admin-sidebar__text">Achievements</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="personality">
+              <span class="admin-sidebar__icon">🧠</span>
+              <span class="admin-sidebar__text">Personality</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="interests">
+              <span class="admin-sidebar__icon">🎮</span>
+              <span class="admin-sidebar__text">Interests</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="swot">
+              <span class="admin-sidebar__icon">📊</span>
+              <span class="admin-sidebar__text">SWOT Analysis</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="values">
+              <span class="admin-sidebar__icon">✨</span>
+              <span class="admin-sidebar__text">Values</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="goals">
+              <span class="admin-sidebar__icon">🎯</span>
+              <span class="admin-sidebar__text">Goals</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="gapAnalysis">
+              <span class="admin-sidebar__icon">📈</span>
+              <span class="admin-sidebar__text">Gap Analysis</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="actionPlan">
+              <span class="admin-sidebar__icon">📋</span>
+              <span class="admin-sidebar__text">Action Plan</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="projects">
+              <span class="admin-sidebar__icon">🚀</span>
+              <span class="admin-sidebar__text">Projects</span>
+            </a>
+          </li>
+          <div class="admin-sidebar__section-label">General</div>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="messages">
+              <span class="admin-sidebar__icon">📬</span>
+              <span class="admin-sidebar__text">Messages <span id="sidebar-msg-badge" style="display:none;background:var(--admin-accent);color:#000;font-size:10px;font-weight:700;border-radius:9999px;padding:1px 6px;margin-left:4px"></span></span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="admin-sidebar__link" data-section="settings">
+              <span class="admin-sidebar__icon">⚙️</span>
+              <span class="admin-sidebar__text">Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="admin-sidebar__footer">
+        <a href="index.html" class="admin-sidebar__footer-btn" target="_blank" rel="noopener noreferrer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <span>View Portfolio</span>
+        </a>
+      </div>
+    </aside>
+
+
+    <!-- ═══════════════════════════════════════════
+         MAIN CONTENT AREA
+    ═══════════════════════════════════════════ -->
+    <main class="admin-main">
+
+      <!-- ─── Top Action Bar ─── -->
+      <header class="admin-topbar">
+        <div class="admin-topbar__left">
+          <div>
+            <div class="admin-topbar__section-title" id="admin-page-title">Personal Info</div>
+          </div>
+        </div>
+        <div class="admin-topbar__actions">
+          <button type="button" class="admin-topbar-btn" id="export-json-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Export</span>
+          </button>
+          <button type="button" class="admin-topbar-btn" id="import-json-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span>Import</span>
+          </button>
+          <button type="button" class="admin-topbar-btn admin-topbar-btn--primary" id="save-all-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            <span>Save All</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- ─── Content Sections ─── -->
+      <div id="admin-content" class="admin-content">
+
+        <!-- ══════════════════════════════════════
+             PERSONAL INFO SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-personal" class="admin-section">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">👤 Personal Information</h2>
+            <p class="admin-section__desc">Manage your basic profile details, bio, and social links.</p>
+          </div>
+
+          <form id="personal-form" class="admin-form glass-card" autocomplete="off">
+            <!-- Basic Info -->
+            <fieldset class="admin-fieldset">
+              <legend class="admin-fieldset__legend">Basic Details</legend>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="personal-fullname" class="form-label">Full Name</label>
+                  <input type="text" id="personal-fullname" name="fullName" class="form-input" placeholder="Yuresh Dilshan" />
+                </div>
+                <div class="form-group">
+                  <label for="personal-title" class="form-label">Title / Role</label>
+                  <input type="text" id="personal-title" name="title" class="form-input" placeholder="Aspiring Software Engineer" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="personal-bio" class="form-label">Bio</label>
+                <textarea id="personal-bio" name="bio" class="form-input form-textarea" rows="5" placeholder="Write a short bio about yourself..."></textarea>
+              </div>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="personal-email" class="form-label">Email</label>
+                  <input type="email" id="personal-email" name="email" class="form-input" placeholder="hello@yureshdilshan.dev" />
+                </div>
+                <div class="form-group">
+                  <label for="personal-location" class="form-label">Location</label>
+                  <input type="text" id="personal-location" name="location" class="form-input" placeholder="Sri Lanka" />
+                </div>
+              </div>
+
+              <!-- Profile Image Upload -->
+              <div class="form-group">
+                <label class="form-label">Profile Image</label>
+                <div class="file-upload" id="profile-image-upload">
+                  <div class="file-upload__preview" id="profile-image-preview">
+                    <img id="profile-image-thumb" src="" alt="Profile preview" style="display: none;" />
+                    <span class="file-upload__placeholder">
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                      <span>Click or drag to upload</span>
+                    </span>
+                  </div>
+                  <input type="file" id="personal-profile-image" name="profileImage" class="file-upload__input" accept="image/*" />
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Social Links -->
+            <fieldset class="admin-fieldset">
+              <legend class="admin-fieldset__legend">Social Links</legend>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="personal-linkedin" class="form-label">LinkedIn URL</label>
+                  <input type="url" id="personal-linkedin" name="linkedin" class="form-input" placeholder="https://linkedin.com/in/username" />
+                </div>
+                <div class="form-group">
+                  <label for="personal-github" class="form-label">GitHub URL</label>
+                  <input type="url" id="personal-github" name="github" class="form-input" placeholder="https://github.com/username" />
+                </div>
+              </div>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="personal-facebook" class="form-label">Facebook URL</label>
+                  <input type="url" id="personal-facebook" name="facebook" class="form-input" placeholder="https://facebook.com/username" />
+                </div>
+                <div class="form-group">
+                  <label for="personal-instagram" class="form-label">Instagram URL</label>
+                  <input type="url" id="personal-instagram" name="instagram" class="form-input" placeholder="https://instagram.com/username" />
+                </div>
+              </div>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="personal-threads" class="form-label">Threads URL</label>
+                  <input type="url" id="personal-threads" name="threads" class="form-input" placeholder="https://threads.net/@username" />
+                </div>
+                <div class="form-group">
+                  <label for="personal-tiktok" class="form-label">TikTok URL</label>
+                  <input type="url" id="personal-tiktok" name="tiktok" class="form-input" placeholder="https://tiktok.com/@username" />
+                </div>
+              </div>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="personal-whatsapp" class="form-label">WhatsApp URL</label>
+                  <input type="url" id="personal-whatsapp" name="whatsapp" class="form-input" placeholder="https://wa.me/username" />
+                </div>
+                <div class="form-group">
+                  <label for="personal-website" class="form-label">Website URL</label>
+                  <input type="url" id="personal-website" name="website" class="form-input" placeholder="https://yureshdilshan.dev" />
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="admin-form__actions">
+              <button type="submit" class="btn btn--primary btn--glow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                <span>Save Personal Info</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             EDUCATION SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-education" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">🎓 Education</h2>
+            <p class="admin-section__desc">Manage your educational qualifications and academic history.</p>
+          </div>
+
+          <div class="admin-list-controls">
+            <button type="button" class="btn btn--primary btn--sm" id="add-education-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Education</span>
+            </button>
+          </div>
+
+          <div id="education-list" class="admin-items-list">
+            <!-- Dynamically populated by admin.js -->
+          </div>
+
+          <!-- Education Edit Form (hidden by default, shown when editing) -->
+          <div id="education-form-container" class="admin-edit-form glass-card" style="display: none;">
+            <h3 class="admin-edit-form__title">Education Entry</h3>
+            <form id="education-form" class="admin-form" autocomplete="off">
+              <input type="hidden" id="education-edit-id" name="id" />
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="education-degree" class="form-label">Degree / Qualification</label>
+                  <input type="text" id="education-degree" name="degree" class="form-input" placeholder="BSc (Hons) in Software Engineering" required />
+                </div>
+                <div class="form-group">
+                  <label for="education-institution" class="form-label">Institution</label>
+                  <input type="text" id="education-institution" name="institution" class="form-input" placeholder="University of Example" required />
+                </div>
+              </div>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="education-year" class="form-label">Year / Period</label>
+                  <input type="text" id="education-year" name="year" class="form-input" placeholder="2023 – 2027" />
+                </div>
+                <div class="form-group">
+                  <label for="education-gpa" class="form-label">GPA / Grade</label>
+                  <input type="text" id="education-gpa" name="gpa" class="form-input" placeholder="3.8 / 4.0" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="education-description" class="form-label">Description</label>
+                <textarea id="education-description" name="description" class="form-input form-textarea" rows="4" placeholder="Briefly describe your studies, key modules, achievements..."></textarea>
+              </div>
+
+              <!-- Proof Uploads -->
+              <div class="form-group">
+                <label class="form-label">Proof / Certificates</label>
+                <div class="file-upload" id="education-proof-upload">
+                  <div class="file-upload__preview" id="education-proof-preview">
+                    <span class="file-upload__placeholder">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                      <span>Upload proof files (images/PDF)</span>
+                    </span>
+                  </div>
+                  <input type="file" id="education-proof-files" name="proofs" class="file-upload__input" accept="image/*,.pdf" multiple />
+                </div>
+                <div id="education-proof-list" class="file-upload__file-list"></div>
+              </div>
+
+              <div class="admin-form__actions">
+                <button type="button" class="btn btn--outline" id="education-cancel-btn">Cancel</button>
+                <button type="submit" class="btn btn--primary btn--glow">
+                  <span>Save Education</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             PROFESSIONAL QUALIFICATIONS SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-professionalQualifications" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">🏆 Professional Qualifications</h2>
+            <p class="admin-section__desc">Manage your professional certifications and accreditations.</p>
+          </div>
+
+          <div class="admin-list-controls">
+            <button type="button" class="btn btn--primary btn--sm" id="add-profqual-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Qualification</span>
+            </button>
+          </div>
+
+          <div id="profqual-list" class="admin-items-list">
+            <!-- Dynamically populated by admin.js -->
+          </div>
+
+          <div id="profqual-form-container" class="admin-edit-form glass-card" style="display: none;">
+            <h3 class="admin-edit-form__title">Professional Qualification Entry</h3>
+            <form id="profqual-form" class="admin-form" autocomplete="off">
+              <input type="hidden" id="profqual-edit-id" name="id" />
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="profqual-title" class="form-label">Title</label>
+                  <input type="text" id="profqual-title" name="title" class="form-input" placeholder="AWS Certified Solutions Architect" required />
+                </div>
+                <div class="form-group">
+                  <label for="profqual-issuer" class="form-label">Issuing Organization</label>
+                  <input type="text" id="profqual-issuer" name="issuer" class="form-input" placeholder="Amazon Web Services" required />
+                </div>
+              </div>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="profqual-date" class="form-label">Date Obtained</label>
+                  <input type="text" id="profqual-date" name="date" class="form-input" placeholder="March 2025" />
+                </div>
+                <div class="form-group">
+                  <label for="profqual-credential-url" class="form-label">Credential URL</label>
+                  <input type="url" id="profqual-credential-url" name="credentialUrl" class="form-input" placeholder="https://credential.example.com/verify/..." />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="profqual-description" class="form-label">Description</label>
+                <textarea id="profqual-description" name="description" class="form-input form-textarea" rows="3" placeholder="Brief description of this qualification..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Proof / Certificates</label>
+                <div class="file-upload" id="profqual-proof-upload">
+                  <div class="file-upload__preview" id="profqual-proof-preview">
+                    <span class="file-upload__placeholder">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                      <span>Upload proof files</span>
+                    </span>
+                  </div>
+                  <input type="file" id="profqual-proof-files" name="proofs" class="file-upload__input" accept="image/*,.pdf" multiple />
+                </div>
+                <div id="profqual-proof-list" class="file-upload__file-list"></div>
+              </div>
+
+              <div class="admin-form__actions">
+                <button type="button" class="btn btn--outline" id="profqual-cancel-btn">Cancel</button>
+                <button type="submit" class="btn btn--primary btn--glow">
+                  <span>Save Qualification</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             VOCATIONAL QUALIFICATIONS SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-vocationalQualifications" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">📜 Vocational Qualifications</h2>
+            <p class="admin-section__desc">Manage your vocational training and workshop completions.</p>
+          </div>
+
+          <div class="admin-list-controls">
+            <button type="button" class="btn btn--primary btn--sm" id="add-vocqual-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Qualification</span>
+            </button>
+          </div>
+
+          <div id="vocqual-list" class="admin-items-list">
+            <!-- Dynamically populated by admin.js -->
+          </div>
+
+          <div id="vocqual-form-container" class="admin-edit-form glass-card" style="display: none;">
+            <h3 class="admin-edit-form__title">Vocational Qualification Entry</h3>
+            <form id="vocqual-form" class="admin-form" autocomplete="off">
+              <input type="hidden" id="vocqual-edit-id" name="id" />
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="vocqual-title" class="form-label">Title</label>
+                  <input type="text" id="vocqual-title" name="title" class="form-input" placeholder="Full Stack Web Development Bootcamp" required />
+                </div>
+                <div class="form-group">
+                  <label for="vocqual-issuer" class="form-label">Issuing Organization</label>
+                  <input type="text" id="vocqual-issuer" name="issuer" class="form-input" placeholder="Udemy / Coursera / etc." required />
+                </div>
+              </div>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="vocqual-date" class="form-label">Date Completed</label>
+                  <input type="text" id="vocqual-date" name="date" class="form-input" placeholder="January 2025" />
+                </div>
+                <div class="form-group">
+                  <label for="vocqual-credential-url" class="form-label">Credential URL</label>
+                  <input type="url" id="vocqual-credential-url" name="credentialUrl" class="form-input" placeholder="https://credential.example.com/verify/..." />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="vocqual-description" class="form-label">Description</label>
+                <textarea id="vocqual-description" name="description" class="form-input form-textarea" rows="3" placeholder="Brief description of this qualification..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Proof / Certificates</label>
+                <div class="file-upload" id="vocqual-proof-upload">
+                  <div class="file-upload__preview" id="vocqual-proof-preview">
+                    <span class="file-upload__placeholder">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                      <span>Upload proof files</span>
+                    </span>
+                  </div>
+                  <input type="file" id="vocqual-proof-files" name="proofs" class="file-upload__input" accept="image/*,.pdf" multiple />
+                </div>
+                <div id="vocqual-proof-list" class="file-upload__file-list"></div>
+              </div>
+
+              <div class="admin-form__actions">
+                <button type="button" class="btn btn--outline" id="vocqual-cancel-btn">Cancel</button>
+                <button type="submit" class="btn btn--primary btn--glow">
+                  <span>Save Qualification</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             EXPERIENCE SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-experience" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">💼 Experience</h2>
+            <p class="admin-section__desc">Manage your work experience, internships, and volunteer roles.</p>
+          </div>
+
+          <div class="admin-list-controls">
+            <button type="button" class="btn btn--primary btn--sm" id="add-experience-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Experience</span>
+            </button>
+          </div>
+
+          <div id="experience-list" class="admin-items-list">
+            <!-- Dynamically populated by admin.js -->
+          </div>
+
+          <div id="experience-form-container" class="admin-edit-form glass-card" style="display: none;">
+            <h3 class="admin-edit-form__title">Experience Entry</h3>
+            <form id="experience-form" class="admin-form" autocomplete="off">
+              <input type="hidden" id="experience-edit-id" name="id" />
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="experience-role" class="form-label">Role / Position</label>
+                  <input type="text" id="experience-role" name="role" class="form-input" placeholder="Junior Software Developer" required />
+                </div>
+                <div class="form-group">
+                  <label for="experience-company" class="form-label">Company / Organization</label>
+                  <input type="text" id="experience-company" name="company" class="form-input" placeholder="Tech Company Inc." required />
+                </div>
+              </div>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="experience-period" class="form-label">Period</label>
+                  <input type="text" id="experience-period" name="period" class="form-input" placeholder="Jan 2025 – Present" />
+                </div>
+                <div class="form-group">
+                  <label for="experience-type" class="form-label">Type</label>
+                  <select id="experience-type" name="type" class="form-input form-select">
+                    <option value="work">Work</option>
+                    <option value="internship">Internship</option>
+                    <option value="volunteer">Volunteer</option>
+                    <option value="freelance">Freelance</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="experience-description" class="form-label">Description</label>
+                <textarea id="experience-description" name="description" class="form-input form-textarea" rows="4" placeholder="Describe your role, responsibilities, and key achievements..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Proof / Evidence</label>
+                <div class="file-upload" id="experience-proof-upload">
+                  <div class="file-upload__preview" id="experience-proof-preview">
+                    <span class="file-upload__placeholder">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                      <span>Upload proof files</span>
+                    </span>
+                  </div>
+                  <input type="file" id="experience-proof-files" name="proofs" class="file-upload__input" accept="image/*,.pdf" multiple />
+                </div>
+                <div id="experience-proof-list" class="file-upload__file-list"></div>
+              </div>
+
+              <div class="admin-form__actions">
+                <button type="button" class="btn btn--outline" id="experience-cancel-btn">Cancel</button>
+                <button type="submit" class="btn btn--primary btn--glow">
+                  <span>Save Experience</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             SKILLS SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-skills" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">⚡ Skills</h2>
+            <p class="admin-section__desc">Manage your technical and soft skills with proficiency levels.</p>
+          </div>
+
+          <div class="admin-list-controls">
+            <button type="button" class="btn btn--primary btn--sm" id="add-skill-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Skill</span>
+            </button>
+          </div>
+
+          <div id="skills-list" class="admin-items-list">
+            <!-- Dynamically populated by admin.js -->
+          </div>
+
+          <div id="skill-form-container" class="admin-edit-form glass-card" style="display: none;">
+            <h3 class="admin-edit-form__title">Skill Entry</h3>
+            <form id="skill-form" class="admin-form" autocomplete="off">
+              <input type="hidden" id="skill-edit-id" name="id" />
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="skill-name" class="form-label">Skill Name</label>
+                  <input type="text" id="skill-name" name="name" class="form-input" placeholder="JavaScript" required />
+                </div>
+                <div class="form-group">
+                  <label for="skill-category" class="form-label">Category</label>
+                  <select id="skill-category" name="category" class="form-input form-select">
+                    <option value="frontend">Frontend</option>
+                    <option value="backend">Backend</option>
+                    <option value="tools">Tools</option>
+                    <option value="soft-skills">Soft Skills</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="skill-level" class="form-label">
+                  Proficiency Level: <span id="skill-level-value" class="form-label__highlight">50</span>%
+                </label>
+                <input type="range" id="skill-level" name="level" class="form-range" min="0" max="100" value="50" />
+                <div class="form-range__labels">
+                  <span>Beginner</span>
+                  <span>Intermediate</span>
+                  <span>Advanced</span>
+                  <span>Expert</span>
+                </div>
+              </div>
+
+              <div class="admin-form__actions">
+                <button type="button" class="btn btn--outline" id="skill-cancel-btn">Cancel</button>
+                <button type="submit" class="btn btn--primary btn--glow">
+                  <span>Save Skill</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             COMPETENCIES SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-competencies" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">🎯 Competencies</h2>
+            <p class="admin-section__desc">Manage your core professional competencies.</p>
+          </div>
+
+          <div class="admin-list-controls">
+            <button type="button" class="btn btn--primary btn--sm" id="add-competency-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Competency</span>
+            </button>
+          </div>
+
+          <div id="competencies-list" class="admin-items-list">
+            <!-- Dynamically populated by admin.js -->
+          </div>
+
+          <div id="competency-form-container" class="admin-edit-form glass-card" style="display: none;">
+            <h3 class="admin-edit-form__title">Competency Entry</h3>
+            <form id="competency-form" class="admin-form" autocomplete="off">
+              <input type="hidden" id="competency-edit-id" name="id" />
+
+              <div class="form-group">
+                <label for="competency-name" class="form-label">Competency Name</label>
+                <input type="text" id="competency-name" name="name" class="form-input" placeholder="Problem Solving" required />
+              </div>
+
+              <div class="form-group">
+                <label for="competency-description" class="form-label">Description</label>
+                <textarea id="competency-description" name="description" class="form-input form-textarea" rows="3" placeholder="Describe this competency and how you demonstrate it..."></textarea>
+              </div>
+
+              <div class="admin-form__actions">
+                <button type="button" class="btn btn--outline" id="competency-cancel-btn">Cancel</button>
+                <button type="submit" class="btn btn--primary btn--glow">
+                  <span>Save Competency</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             ACHIEVEMENTS SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-achievements" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">🏅 Achievements</h2>
+            <p class="admin-section__desc">Manage your awards, recognitions, and notable accomplishments.</p>
+          </div>
+
+          <div class="admin-list-controls">
+            <button type="button" class="btn btn--primary btn--sm" id="add-achievement-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Achievement</span>
+            </button>
+          </div>
+
+          <div id="achievements-list" class="admin-items-list">
+            <!-- Dynamically populated by admin.js -->
+          </div>
+
+          <div id="achievement-form-container" class="admin-edit-form glass-card" style="display: none;">
+            <h3 class="admin-edit-form__title">Achievement Entry</h3>
+            <form id="achievement-form" class="admin-form" autocomplete="off">
+              <input type="hidden" id="achievement-edit-id" name="id" />
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="achievement-title" class="form-label">Title</label>
+                  <input type="text" id="achievement-title" name="title" class="form-input" placeholder="Dean's List Award" required />
+                </div>
+                <div class="form-group">
+                  <label for="achievement-date" class="form-label">Date</label>
+                  <input type="text" id="achievement-date" name="date" class="form-input" placeholder="2025" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="achievement-category" class="form-label">Category</label>
+                <input type="text" id="achievement-category" name="category" class="form-input" placeholder="Academic / Competition / Personal" />
+              </div>
+
+              <div class="form-group">
+                <label for="achievement-description" class="form-label">Description</label>
+                <textarea id="achievement-description" name="description" class="form-input form-textarea" rows="3" placeholder="Describe this achievement..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Proof / Evidence</label>
+                <div class="file-upload" id="achievement-proof-upload">
+                  <div class="file-upload__preview" id="achievement-proof-preview">
+                    <span class="file-upload__placeholder">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                      <span>Upload proof files</span>
+                    </span>
+                  </div>
+                  <input type="file" id="achievement-proof-files" name="proofs" class="file-upload__input" accept="image/*,.pdf" multiple />
+                </div>
+                <div id="achievement-proof-list" class="file-upload__file-list"></div>
+              </div>
+
+              <div class="admin-form__actions">
+                <button type="button" class="btn btn--outline" id="achievement-cancel-btn">Cancel</button>
+                <button type="submit" class="btn btn--primary btn--glow">
+                  <span>Save Achievement</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             PERSONALITY SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-personality" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">🧠 Personality</h2>
+            <p class="admin-section__desc">Manage your MBTI type, career key results, and personality proofs.</p>
+          </div>
+
+          <form id="personality-form" class="admin-form glass-card" autocomplete="off">
+            <fieldset class="admin-fieldset">
+              <legend class="admin-fieldset__legend">MBTI Personality</legend>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="personality-mbti" class="form-label">MBTI Type (4 characters)</label>
+                  <input type="text" id="personality-mbti" name="mbtiType" class="form-input" placeholder="INTJ" maxlength="4" style="text-transform: uppercase; letter-spacing: 0.25em; font-size: 1.25rem; font-weight: 600;" />
+                </div>
+                <div class="form-group">
+                  <label for="personality-mbti-label" class="form-label">MBTI Label</label>
+                  <input type="text" id="personality-mbti-label" name="mbtiLabel" class="form-input" placeholder="The Architect" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="personality-mbti-description" class="form-label">MBTI Description</label>
+                <textarea id="personality-mbti-description" name="mbtiDescription" class="form-input form-textarea" rows="4" placeholder="Describe your personality type and how it relates to your career..."></textarea>
+              </div>
+            </fieldset>
+
+            <fieldset class="admin-fieldset">
+              <legend class="admin-fieldset__legend">Career Key Results</legend>
+
+              <div class="form-group">
+                <label for="personality-career-key" class="form-label">Career Key Results</label>
+                <textarea id="personality-career-key" name="careerKeyResults" class="form-input form-textarea" rows="4" placeholder="Enter your career key assessment results..."></textarea>
+              </div>
+            </fieldset>
+
+            <fieldset class="admin-fieldset">
+              <legend class="admin-fieldset__legend">Proof Uploads</legend>
+
+              <div class="form-group">
+                <label class="form-label">Personality Test Proofs</label>
+                <div class="file-upload" id="personality-proof-upload">
+                  <div class="file-upload__preview" id="personality-proof-preview">
+                    <span class="file-upload__placeholder">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                      <span>Upload personality test screenshots</span>
+                    </span>
+                  </div>
+                  <input type="file" id="personality-proof-files" name="proofs" class="file-upload__input" accept="image/*,.pdf" multiple />
+                </div>
+                <div id="personality-proof-list" class="file-upload__file-list"></div>
+              </div>
+            </fieldset>
+
+            <div class="admin-form__actions">
+              <button type="submit" class="btn btn--primary btn--glow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                <span>Save Personality</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             INTERESTS SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-interests" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">🎮 Interests & Hobbies</h2>
+            <p class="admin-section__desc">Manage your personal interests and hobbies.</p>
+          </div>
+
+          <div class="admin-list-controls">
+            <button type="button" class="btn btn--primary btn--sm" id="add-interest-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Interest</span>
+            </button>
+          </div>
+
+          <div id="interests-list" class="admin-items-list">
+            <!-- Dynamically populated by admin.js -->
+          </div>
+
+          <div id="interest-form-container" class="admin-edit-form glass-card" style="display: none;">
+            <h3 class="admin-edit-form__title">Interest Entry</h3>
+            <form id="interest-form" class="admin-form" autocomplete="off">
+              <input type="hidden" id="interest-edit-id" name="id" />
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="interest-icon" class="form-label">Icon (Emoji)</label>
+                  <input type="text" id="interest-icon" name="icon" class="form-input" placeholder="🎮" style="font-size: 1.5rem; text-align: center;" />
+                </div>
+                <div class="form-group">
+                  <label for="interest-name" class="form-label">Name</label>
+                  <input type="text" id="interest-name" name="name" class="form-input" placeholder="Gaming" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="interest-description" class="form-label">Description</label>
+                <textarea id="interest-description" name="description" class="form-input form-textarea" rows="3" placeholder="Brief description of this interest..."></textarea>
+              </div>
+
+              <div class="admin-form__actions">
+                <button type="button" class="btn btn--outline" id="interest-cancel-btn">Cancel</button>
+                <button type="submit" class="btn btn--primary btn--glow">
+                  <span>Save Interest</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             SWOT ANALYSIS SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-swot" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">📊 SWOT Analysis</h2>
+            <p class="admin-section__desc">Manage your personal SWOT analysis — Strengths, Weaknesses, Opportunities, and Threats.</p>
+          </div>
+
+          <form id="swot-form" class="admin-form" autocomplete="off">
+            <div class="admin-swot-grid">
+
+              <!-- Strengths -->
+              <div class="admin-swot-card glass-card admin-swot-card--strengths">
+                <div class="admin-swot-card__header">
+                  <span class="admin-swot-card__icon">💪</span>
+                  <h3 class="admin-swot-card__title">Strengths</h3>
+                </div>
+                <div class="admin-swot-card__items" id="swot-strengths-list">
+                  <!-- Dynamically populated by admin.js -->
+                </div>
+                <div class="admin-swot-card__add">
+                  <input type="text" class="form-input form-input--sm" id="swot-strength-input" placeholder="Add a strength..." />
+                  <button type="button" class="btn btn--primary btn--icon" id="add-strength-btn" aria-label="Add strength">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Weaknesses -->
+              <div class="admin-swot-card glass-card admin-swot-card--weaknesses">
+                <div class="admin-swot-card__header">
+                  <span class="admin-swot-card__icon">🔧</span>
+                  <h3 class="admin-swot-card__title">Weaknesses</h3>
+                </div>
+                <div class="admin-swot-card__items" id="swot-weaknesses-list">
+                  <!-- Dynamically populated by admin.js -->
+                </div>
+                <div class="admin-swot-card__add">
+                  <input type="text" class="form-input form-input--sm" id="swot-weakness-input" placeholder="Add a weakness..." />
+                  <button type="button" class="btn btn--primary btn--icon" id="add-weakness-btn" aria-label="Add weakness">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Opportunities -->
+              <div class="admin-swot-card glass-card admin-swot-card--opportunities">
+                <div class="admin-swot-card__header">
+                  <span class="admin-swot-card__icon">🚀</span>
+                  <h3 class="admin-swot-card__title">Opportunities</h3>
+                </div>
+                <div class="admin-swot-card__items" id="swot-opportunities-list">
+                  <!-- Dynamically populated by admin.js -->
+                </div>
+                <div class="admin-swot-card__add">
+                  <input type="text" class="form-input form-input--sm" id="swot-opportunity-input" placeholder="Add an opportunity..." />
+                  <button type="button" class="btn btn--primary btn--icon" id="add-opportunity-btn" aria-label="Add opportunity">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Threats -->
+              <div class="admin-swot-card glass-card admin-swot-card--threats">
+                <div class="admin-swot-card__header">
+                  <span class="admin-swot-card__icon">⚠️</span>
+                  <h3 class="admin-swot-card__title">Threats</h3>
+                </div>
+                <div class="admin-swot-card__items" id="swot-threats-list">
+                  <!-- Dynamically populated by admin.js -->
+                </div>
+                <div class="admin-swot-card__add">
+                  <input type="text" class="form-input form-input--sm" id="swot-threat-input" placeholder="Add a threat..." />
+                  <button type="button" class="btn btn--primary btn--icon" id="add-threat-btn" aria-label="Add threat">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="admin-form__actions" style="margin-top: 2rem;">
+              <button type="submit" class="btn btn--primary btn--glow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                <span>Save SWOT Analysis</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             VALUES SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-values" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">✨ Values</h2>
+            <p class="admin-section__desc">Manage your core personal and professional values.</p>
+          </div>
+
+          <div class="admin-list-controls">
+            <button type="button" class="btn btn--primary btn--sm" id="add-value-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Value</span>
+            </button>
+          </div>
+
+          <div id="values-list" class="admin-items-list">
+            <!-- Dynamically populated by admin.js -->
+          </div>
+
+          <div id="value-form-container" class="admin-edit-form glass-card" style="display: none;">
+            <h3 class="admin-edit-form__title">Value Entry</h3>
+            <form id="value-form" class="admin-form" autocomplete="off">
+              <input type="hidden" id="value-edit-id" name="id" />
+
+              <div class="form-group">
+                <label for="value-name" class="form-label">Value Name</label>
+                <input type="text" id="value-name" name="name" class="form-input" placeholder="Integrity" required />
+              </div>
+
+              <div class="form-group">
+                <label for="value-description" class="form-label">Description</label>
+                <textarea id="value-description" name="description" class="form-input form-textarea" rows="3" placeholder="Why this value matters to you..."></textarea>
+              </div>
+
+              <div class="admin-form__actions">
+                <button type="button" class="btn btn--outline" id="value-cancel-btn">Cancel</button>
+                <button type="submit" class="btn btn--primary btn--glow">
+                  <span>Save Value</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             GOALS SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-goals" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">🎯 Goals</h2>
+            <p class="admin-section__desc">Manage your SMART and SAFE goals with progress tracking.</p>
+          </div>
+
+          <!-- Goal Type Tabs -->
+          <div class="tabs admin-tabs" role="tablist" aria-label="Goal type selection">
+            <button class="tab-btn tab-btn--active" role="tab" aria-selected="true" data-goal-tab="smart" id="goal-tab-smart">SMART Goals</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-goal-tab="safe" id="goal-tab-safe">SAFE Goals</button>
+          </div>
+
+          <!-- SMART Goals Panel -->
+          <div id="goals-smart-panel" class="admin-tab-panel">
+            <div class="admin-list-controls">
+              <button type="button" class="btn btn--primary btn--sm" id="add-smart-goal-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Add SMART Goal</span>
+              </button>
+            </div>
+
+            <div id="smart-goals-list" class="admin-items-list">
+              <!-- Dynamically populated by admin.js -->
+            </div>
+
+            <div id="smart-goal-form-container" class="admin-edit-form glass-card" style="display: none;">
+              <h3 class="admin-edit-form__title">SMART Goal</h3>
+              <form id="smart-goal-form" class="admin-form" autocomplete="off">
+                <input type="hidden" id="smart-goal-edit-id" name="id" />
+
+                <div class="form-group">
+                  <label for="smart-goal-title" class="form-label">Goal Title</label>
+                  <input type="text" id="smart-goal-title" name="title" class="form-input" placeholder="Complete Cloud Certification" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="smart-goal-specific" class="form-label">Specific</label>
+                  <textarea id="smart-goal-specific" name="specific" class="form-input form-textarea" rows="2" placeholder="What exactly will you accomplish?"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="smart-goal-measurable" class="form-label">Measurable</label>
+                  <textarea id="smart-goal-measurable" name="measurable" class="form-input form-textarea" rows="2" placeholder="How will you measure progress?"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="smart-goal-achievable" class="form-label">Achievable</label>
+                  <textarea id="smart-goal-achievable" name="achievable" class="form-input form-textarea" rows="2" placeholder="Is this goal realistic? What resources do you need?"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="smart-goal-relevant" class="form-label">Relevant</label>
+                  <textarea id="smart-goal-relevant" name="relevant" class="form-input form-textarea" rows="2" placeholder="Why does this goal matter to your career?"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="smart-goal-timebound" class="form-label">Time-Bound</label>
+                  <textarea id="smart-goal-timebound" name="timeBound" class="form-input form-textarea" rows="2" placeholder="What is your deadline?"></textarea>
+                </div>
+
+                <div class="form-row form-row--2">
+                  <div class="form-group">
+                    <label for="smart-goal-progress" class="form-label">
+                      Progress: <span id="smart-goal-progress-value" class="form-label__highlight">0</span>%
+                    </label>
+                    <input type="range" id="smart-goal-progress" name="progress" class="form-range" min="0" max="100" value="0" />
+                  </div>
+                  <div class="form-group">
+                    <label for="smart-goal-status" class="form-label">Status</label>
+                    <select id="smart-goal-status" name="status" class="form-input form-select">
+                      <option value="not-started">Not Started</option>
+                      <option value="in-progress">In Progress</option>
+                      <option value="completed">Completed</option>
+                      <option value="on-hold">On Hold</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="admin-form__actions">
+                  <button type="button" class="btn btn--outline" id="smart-goal-cancel-btn">Cancel</button>
+                  <button type="submit" class="btn btn--primary btn--glow">
+                    <span>Save SMART Goal</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- SAFE Goals Panel -->
+          <div id="goals-safe-panel" class="admin-tab-panel" style="display: none;">
+            <div class="admin-list-controls">
+              <button type="button" class="btn btn--primary btn--sm" id="add-safe-goal-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Add SAFE Goal</span>
+              </button>
+            </div>
+
+            <div id="safe-goals-list" class="admin-items-list">
+              <!-- Dynamically populated by admin.js -->
+            </div>
+
+            <div id="safe-goal-form-container" class="admin-edit-form glass-card" style="display: none;">
+              <h3 class="admin-edit-form__title">SAFE Goal</h3>
+              <form id="safe-goal-form" class="admin-form" autocomplete="off">
+                <input type="hidden" id="safe-goal-edit-id" name="id" />
+
+                <div class="form-group">
+                  <label for="safe-goal-title" class="form-label">Goal Title</label>
+                  <input type="text" id="safe-goal-title" name="title" class="form-input" placeholder="Build an Open Source Community" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="safe-goal-stretch" class="form-label">Stretch</label>
+                  <textarea id="safe-goal-stretch" name="stretch" class="form-input form-textarea" rows="2" placeholder="How does this stretch your abilities?"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="safe-goal-ambitious" class="form-label">Ambitious</label>
+                  <textarea id="safe-goal-ambitious" name="ambitious" class="form-input form-textarea" rows="2" placeholder="What makes this goal ambitious?"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="safe-goal-flexible" class="form-label">Flexible</label>
+                  <textarea id="safe-goal-flexible" name="flexible" class="form-input form-textarea" rows="2" placeholder="How can you adapt this goal if circumstances change?"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="safe-goal-everyday" class="form-label">Everyday</label>
+                  <textarea id="safe-goal-everyday" name="everyday" class="form-input form-textarea" rows="2" placeholder="What will you do every day to work toward this goal?"></textarea>
+                </div>
+
+                <div class="form-row form-row--2">
+                  <div class="form-group">
+                    <label for="safe-goal-progress" class="form-label">
+                      Progress: <span id="safe-goal-progress-value" class="form-label__highlight">0</span>%
+                    </label>
+                    <input type="range" id="safe-goal-progress" name="progress" class="form-range" min="0" max="100" value="0" />
+                  </div>
+                  <div class="form-group">
+                    <label for="safe-goal-status" class="form-label">Status</label>
+                    <select id="safe-goal-status" name="status" class="form-input form-select">
+                      <option value="not-started">Not Started</option>
+                      <option value="in-progress">In Progress</option>
+                      <option value="completed">Completed</option>
+                      <option value="on-hold">On Hold</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="admin-form__actions">
+                  <button type="button" class="btn btn--outline" id="safe-goal-cancel-btn">Cancel</button>
+                  <button type="submit" class="btn btn--primary btn--glow">
+                    <span>Save SAFE Goal</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             GAP ANALYSIS SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-gapAnalysis" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">📈 Gap Analysis</h2>
+            <p class="admin-section__desc">Identify gaps in knowledge, skills, and experience — then plan to bridge them.</p>
+          </div>
+
+          <!-- Gap Type Tabs -->
+          <div class="tabs admin-tabs" role="tablist" aria-label="Gap analysis categories">
+            <button class="tab-btn tab-btn--active" role="tab" aria-selected="true" data-gap-tab="knowledge" id="gap-tab-knowledge">Knowledge</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-gap-tab="skills" id="gap-tab-skills">Skills</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-gap-tab="experience" id="gap-tab-experience">Experience</button>
+          </div>
+
+          <!-- Knowledge Gap Panel -->
+          <div id="gap-knowledge-panel" class="admin-tab-panel">
+            <div class="admin-list-controls">
+              <button type="button" class="btn btn--primary btn--sm" id="add-knowledge-gap-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Add Knowledge Gap</span>
+              </button>
+            </div>
+            <div id="knowledge-gap-list" class="admin-items-list"></div>
+
+            <div id="knowledge-gap-form-container" class="admin-edit-form glass-card" style="display: none;">
+              <h3 class="admin-edit-form__title">Knowledge Gap Entry</h3>
+              <form id="knowledge-gap-form" class="admin-form" autocomplete="off">
+                <input type="hidden" id="knowledge-gap-edit-id" name="id" />
+
+                <div class="form-group">
+                  <label for="knowledge-gap-area" class="form-label">Area / Topic</label>
+                  <input type="text" id="knowledge-gap-area" name="area" class="form-input" placeholder="Cloud Architecture" required />
+                </div>
+
+                <div class="form-row form-row--2">
+                  <div class="form-group">
+                    <label for="knowledge-gap-current" class="form-label">Current Level</label>
+                    <textarea id="knowledge-gap-current" name="current" class="form-input form-textarea" rows="2" placeholder="Where you are now..."></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="knowledge-gap-required" class="form-label">Required Level</label>
+                    <textarea id="knowledge-gap-required" name="required" class="form-input form-textarea" rows="2" placeholder="Where you need to be..."></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="knowledge-gap-gap" class="form-label">Identified Gap</label>
+                  <textarea id="knowledge-gap-gap" name="gap" class="form-input form-textarea" rows="2" placeholder="What is the gap?"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="knowledge-gap-plan" class="form-label">Action Plan</label>
+                  <textarea id="knowledge-gap-plan" name="plan" class="form-input form-textarea" rows="2" placeholder="How will you bridge this gap?"></textarea>
+                </div>
+
+                <div class="admin-form__actions">
+                  <button type="button" class="btn btn--outline" id="knowledge-gap-cancel-btn">Cancel</button>
+                  <button type="submit" class="btn btn--primary btn--glow">
+                    <span>Save Knowledge Gap</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Skills Gap Panel -->
+          <div id="gap-skills-panel" class="admin-tab-panel" style="display: none;">
+            <div class="admin-list-controls">
+              <button type="button" class="btn btn--primary btn--sm" id="add-skills-gap-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Add Skills Gap</span>
+              </button>
+            </div>
+            <div id="skills-gap-list" class="admin-items-list"></div>
+
+            <div id="skills-gap-form-container" class="admin-edit-form glass-card" style="display: none;">
+              <h3 class="admin-edit-form__title">Skills Gap Entry</h3>
+              <form id="skills-gap-form" class="admin-form" autocomplete="off">
+                <input type="hidden" id="skills-gap-edit-id" name="id" />
+
+                <div class="form-group">
+                  <label for="skills-gap-area" class="form-label">Skill Area</label>
+                  <input type="text" id="skills-gap-area" name="area" class="form-input" placeholder="DevOps / CI/CD" required />
+                </div>
+
+                <div class="form-row form-row--2">
+                  <div class="form-group">
+                    <label for="skills-gap-current" class="form-label">Current Level</label>
+                    <textarea id="skills-gap-current" name="current" class="form-input form-textarea" rows="2" placeholder="Where you are now..."></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="skills-gap-required" class="form-label">Required Level</label>
+                    <textarea id="skills-gap-required" name="required" class="form-input form-textarea" rows="2" placeholder="Where you need to be..."></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="skills-gap-gap" class="form-label">Identified Gap</label>
+                  <textarea id="skills-gap-gap" name="gap" class="form-input form-textarea" rows="2" placeholder="What is the gap?"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="skills-gap-plan" class="form-label">Action Plan</label>
+                  <textarea id="skills-gap-plan" name="plan" class="form-input form-textarea" rows="2" placeholder="How will you bridge this gap?"></textarea>
+                </div>
+
+                <div class="admin-form__actions">
+                  <button type="button" class="btn btn--outline" id="skills-gap-cancel-btn">Cancel</button>
+                  <button type="submit" class="btn btn--primary btn--glow">
+                    <span>Save Skills Gap</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Experience Gap Panel -->
+          <div id="gap-experience-panel" class="admin-tab-panel" style="display: none;">
+            <div class="admin-list-controls">
+              <button type="button" class="btn btn--primary btn--sm" id="add-experience-gap-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Add Experience Gap</span>
+              </button>
+            </div>
+            <div id="experience-gap-list" class="admin-items-list"></div>
+
+            <div id="experience-gap-form-container" class="admin-edit-form glass-card" style="display: none;">
+              <h3 class="admin-edit-form__title">Experience Gap Entry</h3>
+              <form id="experience-gap-form" class="admin-form" autocomplete="off">
+                <input type="hidden" id="experience-gap-edit-id" name="id" />
+
+                <div class="form-group">
+                  <label for="experience-gap-area" class="form-label">Experience Area</label>
+                  <input type="text" id="experience-gap-area" name="area" class="form-input" placeholder="Team Leadership" required />
+                </div>
+
+                <div class="form-row form-row--2">
+                  <div class="form-group">
+                    <label for="experience-gap-current" class="form-label">Current Level</label>
+                    <textarea id="experience-gap-current" name="current" class="form-input form-textarea" rows="2" placeholder="Where you are now..."></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="experience-gap-required" class="form-label">Required Level</label>
+                    <textarea id="experience-gap-required" name="required" class="form-input form-textarea" rows="2" placeholder="Where you need to be..."></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="experience-gap-gap" class="form-label">Identified Gap</label>
+                  <textarea id="experience-gap-gap" name="gap" class="form-input form-textarea" rows="2" placeholder="What is the gap?"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="experience-gap-plan" class="form-label">Action Plan</label>
+                  <textarea id="experience-gap-plan" name="plan" class="form-input form-textarea" rows="2" placeholder="How will you bridge this gap?"></textarea>
+                </div>
+
+                <div class="admin-form__actions">
+                  <button type="button" class="btn btn--outline" id="experience-gap-cancel-btn">Cancel</button>
+                  <button type="submit" class="btn btn--primary btn--glow">
+                    <span>Save Experience Gap</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             ACTION PLAN SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-actionPlan" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">📋 3-Year Action Plan</h2>
+            <p class="admin-section__desc">Plan your goals across three years — Foundation, Growth, and Mastery.</p>
+          </div>
+
+          <form id="action-plan-form" class="admin-form" autocomplete="off">
+
+            <!-- Year 1 -->
+            <div class="admin-year-block glass-card">
+              <div class="admin-year-block__header">
+                <span class="admin-year-block__badge">Year 1</span>
+                <h3 class="admin-year-block__title">Foundation</h3>
+              </div>
+
+              <div class="form-group">
+                <label for="action-plan-y1-title-input" class="form-label">Year Title</label>
+                <input type="text" id="action-plan-y1-title-input" name="year1Title" class="form-input" placeholder="Foundation" value="Foundation" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Goals</label>
+                <div id="action-plan-y1-goals-list" class="admin-tag-list">
+                  <!-- Dynamically populated by admin.js -->
+                </div>
+                <div class="admin-tag-add">
+                  <input type="text" class="form-input form-input--sm" id="action-plan-y1-goal-input" placeholder="Add a goal for Year 1..." />
+                  <button type="button" class="btn btn--primary btn--icon" id="add-y1-goal-btn" aria-label="Add Year 1 goal">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="action-plan-y1-status-select" class="form-label">Status</label>
+                <select id="action-plan-y1-status-select" name="year1Status" class="form-input form-select">
+                  <option value="upcoming">Upcoming</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Year 2 -->
+            <div class="admin-year-block glass-card">
+              <div class="admin-year-block__header">
+                <span class="admin-year-block__badge">Year 2</span>
+                <h3 class="admin-year-block__title">Growth</h3>
+              </div>
+
+              <div class="form-group">
+                <label for="action-plan-y2-title-input" class="form-label">Year Title</label>
+                <input type="text" id="action-plan-y2-title-input" name="year2Title" class="form-input" placeholder="Growth" value="Growth" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Goals</label>
+                <div id="action-plan-y2-goals-list" class="admin-tag-list">
+                  <!-- Dynamically populated by admin.js -->
+                </div>
+                <div class="admin-tag-add">
+                  <input type="text" class="form-input form-input--sm" id="action-plan-y2-goal-input" placeholder="Add a goal for Year 2..." />
+                  <button type="button" class="btn btn--primary btn--icon" id="add-y2-goal-btn" aria-label="Add Year 2 goal">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="action-plan-y2-status-select" class="form-label">Status</label>
+                <select id="action-plan-y2-status-select" name="year2Status" class="form-input form-select">
+                  <option value="upcoming">Upcoming</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Year 3 -->
+            <div class="admin-year-block glass-card">
+              <div class="admin-year-block__header">
+                <span class="admin-year-block__badge">Year 3</span>
+                <h3 class="admin-year-block__title">Mastery</h3>
+              </div>
+
+              <div class="form-group">
+                <label for="action-plan-y3-title-input" class="form-label">Year Title</label>
+                <input type="text" id="action-plan-y3-title-input" name="year3Title" class="form-input" placeholder="Mastery" value="Mastery" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Goals</label>
+                <div id="action-plan-y3-goals-list" class="admin-tag-list">
+                  <!-- Dynamically populated by admin.js -->
+                </div>
+                <div class="admin-tag-add">
+                  <input type="text" class="form-input form-input--sm" id="action-plan-y3-goal-input" placeholder="Add a goal for Year 3..." />
+                  <button type="button" class="btn btn--primary btn--icon" id="add-y3-goal-btn" aria-label="Add Year 3 goal">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="action-plan-y3-status-select" class="form-label">Status</label>
+                <select id="action-plan-y3-status-select" name="year3Status" class="form-input form-select">
+                  <option value="upcoming">Upcoming</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="admin-form__actions">
+              <button type="submit" class="btn btn--primary btn--glow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                <span>Save Action Plan</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             PROJECTS SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-projects" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">🚀 Projects</h2>
+            <p class="admin-section__desc">Manage your portfolio projects — showcase your best work.</p>
+          </div>
+
+          <div class="admin-list-controls">
+            <button type="button" class="btn btn--primary btn--sm" id="add-project-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Project</span>
+            </button>
+          </div>
+
+          <div id="projects-list" class="admin-items-list admin-items-list--projects">
+            <!-- Dynamically populated by admin.js -->
+          </div>
+
+          <div id="project-form-container" class="admin-edit-form glass-card" style="display: none;">
+            <h3 class="admin-edit-form__title">Project Entry</h3>
+            <form id="project-form" class="admin-form" autocomplete="off">
+              <input type="hidden" id="project-edit-id" name="id" />
+
+              <div class="form-group">
+                <label for="project-title" class="form-label">Project Title</label>
+                <input type="text" id="project-title" name="title" class="form-input" placeholder="My Awesome Project" required />
+              </div>
+
+              <div class="form-group">
+                <label for="project-description" class="form-label">Description</label>
+                <textarea id="project-description" name="description" class="form-input form-textarea" rows="4" placeholder="Describe this project, its purpose, and what you learned..."></textarea>
+              </div>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="project-techstack" class="form-label">Tech Stack (comma-separated)</label>
+                  <input type="text" id="project-techstack" name="techStack" class="form-input" placeholder="React, Node.js, MongoDB, Tailwind" />
+                </div>
+                <div class="form-group">
+                  <label for="project-category" class="form-label">Category</label>
+                  <input type="text" id="project-category" name="category" class="form-input" placeholder="web / mobile / desktop / other" />
+                </div>
+              </div>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="project-live-url" class="form-label">Live URL</label>
+                  <input type="url" id="project-live-url" name="liveUrl" class="form-input" placeholder="https://myproject.example.com" />
+                </div>
+                <div class="form-group">
+                  <label for="project-github-url" class="form-label">GitHub URL</label>
+                  <input type="url" id="project-github-url" name="githubUrl" class="form-input" placeholder="https://github.com/user/repo" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="project-youtube-url" class="form-label">YouTube URL (demo video)</label>
+                <input type="url" id="project-youtube-url" name="youtubeUrl" class="form-input" placeholder="https://youtube.com/watch?v=..." />
+              </div>
+
+              <!-- Project Image Upload -->
+              <div class="form-group">
+                <label class="form-label">Project Image / Screenshot</label>
+                <div class="file-upload" id="project-image-upload">
+                  <div class="file-upload__preview" id="project-image-preview">
+                    <img id="project-image-thumb" src="" alt="Project preview" style="display: none;" />
+                    <span class="file-upload__placeholder">
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                      <span>Click or drag to upload project image</span>
+                    </span>
+                  </div>
+                  <input type="file" id="project-image-file" name="image" class="file-upload__input" accept="image/*" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label form-label--inline">
+                  <input type="checkbox" id="project-featured" name="featured" class="form-checkbox" />
+                  <span>Featured Project</span>
+                  <small class="form-hint">Featured projects will appear prominently on the portfolio</small>
+                </label>
+              </div>
+
+              <div class="admin-form__actions">
+                <button type="button" class="btn btn--outline" id="project-cancel-btn">Cancel</button>
+                <button type="submit" class="btn btn--primary btn--glow">
+                  <span>Save Project</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             MESSAGES SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-messages" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">📬 Messages Inbox</h2>
+            <p class="admin-section__desc">Messages sent via the contact form on your portfolio are stored here.</p>
+          </div>
+
+          <div class="admin-form-section">
+            <div class="admin-card__header" style="margin-bottom:16px">
+              <span class="admin-card__title">Received Messages</span>
+              <button class="admin-btn admin-btn-danger admin-btn-small" id="clear-messages-btn" onclick="adminClearMessages()">🗑 Clear All</button>
+            </div>
+            <div id="messages-list">
+              <div class="item-empty">
+                <span class="item-empty-icon">📭</span>
+                <p>No messages yet. When someone fills out the contact form, messages appear here.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             SETTINGS SECTION
+        ══════════════════════════════════════ -->
+        <section id="section-settings" class="admin-section" style="display: none;">
+          <div class="admin-section__header">
+            <h2 class="admin-section__title">⚙️ Settings</h2>
+            <p class="admin-section__desc">Manage your admin password, data backups, and site configuration.</p>
+          </div>
+
+          <!-- Change Password -->
+          <div class="admin-settings-block glass-card">
+            <h3 class="admin-settings-block__title">Change Admin Password</h3>
+            <form id="change-password-form" class="admin-form" autocomplete="off">
+              <div class="form-group">
+                <label for="settings-current-password" class="form-label">Current Password</label>
+                <input type="password" id="settings-current-password" name="currentPassword" class="form-input" placeholder="Enter current password" autocomplete="current-password" required />
+              </div>
+
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="settings-new-password" class="form-label">New Password</label>
+                  <input type="password" id="settings-new-password" name="newPassword" class="form-input" placeholder="Enter new password" autocomplete="new-password" required />
+                </div>
+                <div class="form-group">
+                  <label for="settings-confirm-password" class="form-label">Confirm New Password</label>
+                  <input type="password" id="settings-confirm-password" name="confirmPassword" class="form-input" placeholder="Confirm new password" autocomplete="new-password" required />
+                </div>
+              </div>
+
+              <div class="admin-form__actions">
+                <button type="submit" class="btn btn--primary">
+                  <span>Update Password</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Data Management -->
+          <div class="admin-settings-block glass-card">
+            <h3 class="admin-settings-block__title">Data Management</h3>
+            <p class="admin-settings-block__desc">Export your portfolio data as JSON for backup, or import from a previous backup.</p>
+
+            <div class="admin-settings-block__actions">
+              <button type="button" class="btn btn--outline" id="settings-export-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Export All Data</span>
+              </button>
+              <button type="button" class="btn btn--outline" id="settings-import-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span>Import Data</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Danger Zone -->
+          <div class="admin-settings-block admin-settings-block--danger glass-card">
+            <h3 class="admin-settings-block__title admin-settings-block__title--danger">⚠️ Danger Zone</h3>
+            <p class="admin-settings-block__desc">This action is irreversible. All portfolio data will be permanently deleted.</p>
+
+            <div class="admin-settings-block__actions">
+              <button type="button" class="btn btn--danger" id="reset-all-data-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+                <span>Reset All Data</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /admin-content -->
+    </main><!-- /admin-main -->
+  </div><!-- /admin-app -->
+
+
+  <!-- ═══════════════════════════════════════════
+       TOAST NOTIFICATIONS
+  ═══════════════════════════════════════════ -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+
+  <!-- ═══════════════════════════════════════════
+       CONFIRMATION MODAL
+  ═══════════════════════════════════════════ -->
+  <div id="admin-modal" class="admin-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="admin-modal__backdrop"></div>
+    <div class="admin-modal__content glass-card">
+      <h3 class="admin-modal__title" id="modal-title">Confirm Action</h3>
+      <p class="admin-modal__message" id="modal-message">Are you sure you want to proceed?</p>
+      <div class="admin-modal__actions">
+        <button type="button" class="btn btn--outline" id="modal-cancel-btn">Cancel</button>
+        <button type="button" class="btn btn--danger" id="modal-confirm-btn">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       HIDDEN FILE INPUT (for import)
+  ═══════════════════════════════════════════ -->
+  <input type="file" id="import-file-input" accept=".json" style="display: none;" />
+
+
+  <!-- ═══════════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════════ -->
+  <script type="module" src="js/admin.js"></script>
+
+</body>
+</html>

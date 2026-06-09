@@ -1,0 +1,209 @@
+/* ============================================
+   ANIMATIONS.CSS — Keyframes & Scroll Reveals
+   Portfolio Site · Calm Futurism v2
+   ============================================ */
+
+/* ─── Keyframes ─────────────────────────────── */
+@keyframes auroraShift {
+  0%   { background-position: 0% 50%; transform: scale(1); }
+  50%  { background-position: 100% 50%; transform: scale(1.05); }
+  100% { background-position: 0% 50%; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(-50%); }
+  50%       { transform: translateY(-10px) translateX(-50%); }
+}
+
+@keyframes floatSimple {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glowPulse-cyan {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--accent-cyan); }
+  50%       { opacity: 0.6; box-shadow: 0 0 12px var(--accent-cyan); }
+}
+
+@keyframes glowPulse-purple {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; box-shadow: 0 0 12px var(--accent-purple); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(0,212,255,0.2), 0 0 12px rgba(0,212,255,0.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(0,212,255,0.1), 0 0 20px rgba(0,212,255,0.6); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes morphBorder {
+  0%, 100% { border-radius: 40% 60% 55% 45% / 48% 43% 57% 52%; }
+  25%       { border-radius: 55% 45% 40% 60% / 52% 57% 43% 48%; }
+  50%       { border-radius: 45% 55% 60% 40% / 57% 48% 52% 43%; }
+  75%       { border-radius: 60% 40% 45% 55% / 43% 52% 48% 57%; }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes progressFill {
+  from { width: 0%; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.98); opacity: 0.35; filter: blur(20px); }
+  100% { transform: scale(1.02); opacity: 0.55; filter: blur(25px); }
+}
+
+/* ─── Scroll Reveal ─────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-scale.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ─── Stagger Delays ────────────────────────── */
+.stagger-1 { transition-delay: 0.05s; }
+.stagger-2 { transition-delay: 0.10s; }
+.stagger-3 { transition-delay: 0.15s; }
+.stagger-4 { transition-delay: 0.20s; }
+.stagger-5 { transition-delay: 0.25s; }
+.stagger-6 { transition-delay: 0.30s; }
+.stagger-7 { transition-delay: 0.35s; }
+.stagger-8 { transition-delay: 0.40s; }
+
+/* ─── Utility Animation Classes ─────────────── */
+.animate-float    { animation: floatSimple 4s ease-in-out infinite; }
+.animate-spin     { animation: spin 8s linear infinite; }
+.animate-bounce   { animation: bounce 2s ease-in-out infinite; }
+.animate-fade-in  { animation: fadeIn 0.5s ease forwards; }
+.animate-fade-up  { animation: fadeInUp 0.6s ease forwards; }
+.animate-shimmer  {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
+}
+
+/* ─── Hover Effects ─────────────────────────── */
+.hover-lift { transition: transform var(--transition-base); }
+.hover-lift:hover { transform: translateY(-4px); }
+
+.hover-glow { transition: box-shadow var(--transition-base); }
+.hover-glow:hover { box-shadow: var(--glow-cyan); }
+
+.hover-scale { transition: transform var(--transition-spring); }
+.hover-scale:hover { transform: scale(1.04); }
+
+/* ─── Reduced Motion ────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
