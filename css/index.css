@@ -135,6 +135,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body.body-scroll-lock {
+  overflow: hidden;
+}
+
+
 /* ─── Aurora Background ──────────────────────── */
 body::before {
   content: '';
