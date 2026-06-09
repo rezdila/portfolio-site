@@ -3,6 +3,7 @@
 
 import { defaultPortfolioData } from './data.js';
 import { sha256 } from './utils.js';
+import { publicConfig } from './config.js';
 
 const STORAGE_KEY = 'yuresh_portfolio_data';
 
@@ -162,9 +163,13 @@ export const DataManager = {
   getCloudConfig() {
     try {
       const stored = localStorage.getItem('yuresh_portfolio_cloud_keys');
-      if (stored) return JSON.parse(stored);
+      const parsed = stored ? JSON.parse(stored) : { apiKey: '', binId: '' };
+      return {
+        apiKey: parsed.apiKey || '',
+        binId: parsed.binId || publicConfig.binId || ''
+      };
     } catch (e) {}
-    return { apiKey: '', binId: '' };
+    return { apiKey: '', binId: publicConfig.binId || '' };
   },
 
   saveCloudConfig(apiKey, binId) {
@@ -178,18 +183,20 @@ export const DataManager = {
 
   async initCloud() {
     const config = this.getCloudConfig();
-    if (!config.apiKey || !config.binId) {
+    if (!config.binId) {
       console.log('[DataManager] Cloud sync not configured. Using local storage.');
       return false;
     }
 
     try {
       console.log('[DataManager] Initializing cloud sync from JSONBin...');
+      const headers = {};
+      if (config.apiKey) {
+        headers['X-Master-Key'] = config.apiKey;
+      }
       const response = await fetch(`https://api.jsonbin.io/v3/b/${config.binId}/latest?meta=false`, {
         method: 'GET',
-        headers: {
-          'X-Master-Key': config.apiKey
-        }
+        headers: headers
       });
 
       if (!response.ok) {
@@ -208,7 +215,9 @@ export const DataManager = {
             if (localTime > cloudTime) {
               console.log('[DataManager] Local storage has newer unsynced edits. Skipping cloud overwrite.');
               // Attempt to sync the newer local data back to the cloud
-              this.syncToCloud(localData);
+              if (config.apiKey) {
+                this.syncToCloud(localData);
+              }
               return true;
             }
           } catch (e) {
