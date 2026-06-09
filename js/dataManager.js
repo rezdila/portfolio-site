@@ -136,6 +136,7 @@ export const DataManager = {
 
   saveData(data) {
     try {
+      data.updatedAt = Date.now();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       this.syncToCloud(data);
       return true;
@@ -184,6 +185,24 @@ export const DataManager = {
 
       const cloudData = await response.json();
       if (cloudData && typeof cloudData === 'object') {
+        // Check if local storage has newer data (last-write-wins)
+        const localDataRaw = localStorage.getItem(STORAGE_KEY);
+        if (localDataRaw) {
+          try {
+            const localData = JSON.parse(localDataRaw);
+            const localTime = localData.updatedAt || 0;
+            const cloudTime = cloudData.updatedAt || 0;
+            if (localTime > cloudTime) {
+              console.log('[DataManager] Local storage has newer unsynced edits. Skipping cloud overwrite.');
+              // Attempt to sync the newer local data back to the cloud
+              this.syncToCloud(localData);
+              return true;
+            }
+          } catch (e) {
+            console.error('[DataManager] Failed to parse local data for timestamp check:', e);
+          }
+        }
+
         localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudData));
         console.log('[DataManager] Cloud sync successfully cached locally.');
         return true;

@@ -682,7 +682,7 @@ function renderProofUploader(item) {
       <div class="proof-list" id="proof-list">
         ${proofs.map((proof, index) => `
           <div class="proof-upload-item">
-            <span class="proof-upload-icon">${proof.type === 'image' ? '🖼️' : proof.type === 'pdf' ? '📄' : proof.type === 'youtube' ? '▶️' : '🎥'}</span>
+            <span class="proof-upload-icon">${proof.type === 'image' ? '🖼️' : proof.type === 'pdf' ? '📄' : proof.type === 'youtube' ? '▶️' : '📎'}</span>
             <span class="proof-upload-name">${escapeHtml(proof.name || 'Proof')}</span>
             <button type="button" class="admin-btn admin-btn-small admin-btn-danger proof-remove-btn" data-index="${index}">✕</button>
           </div>
@@ -694,11 +694,22 @@ function renderProofUploader(item) {
           <span>Drop files here or click to upload (images, PDFs)</span>
           <input type="file" id="proof-file-input" accept="image/*,.pdf,video/*" multiple class="file-input-hidden" />
         </div>
-        <div class="form-group" style="margin-top: 0.5rem;">
+        <p style="font-size: 11px; color: #a78bfa; margin-top: 6px; line-height: 1.3;">
+          ⚠️ <strong>Cloud Limit Note:</strong> Files uploaded directly are stored as base64 in your browser. Large files will exceed JSONBin.io's free 100KB database sync limit and won't save to the cloud. To ensure proofs are visible on all devices, we recommend pasting a link below instead.
+        </p>
+        <div class="form-group" style="margin-top: 1rem;">
+          <label for="link-proof-url">Or add file/document URL (Google Drive, Imgur, Dropbox, etc.):</label>
+          <div style="display: flex; gap: 8px; margin-top: 4px;">
+            <input type="text" id="link-proof-name" placeholder="Name (e.g. Certificate)" style="flex: 1;" />
+            <input type="url" id="link-proof-url" placeholder="https://..." style="flex: 2;" />
+            <button type="button" class="admin-btn admin-btn-small" id="add-link-proof-btn">Add URL</button>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top: 0.75rem;">
           <label for="youtube-proof-url">Or add YouTube URL:</label>
           <div class="input-with-btn">
             <input type="url" id="youtube-proof-url" placeholder="https://youtube.com/watch?v=..." />
-            <button type="button" class="admin-btn admin-btn-small" id="add-youtube-proof-btn">Add</button>
+            <button type="button" class="admin-btn admin-btn-small" id="add-youtube-proof-btn">Add YouTube</button>
           </div>
         </div>
       </div>
@@ -713,6 +724,9 @@ function initProofUpload(sectionKey, item) {
   const fileInput = document.getElementById('proof-file-input');
   const youtubeInput = document.getElementById('youtube-proof-url');
   const addYoutubeBtn = document.getElementById('add-youtube-proof-btn');
+  const linkUrlInput = document.getElementById('link-proof-url');
+  const linkNameInput = document.getElementById('link-proof-name');
+  const addLinkBtn = document.getElementById('add-link-proof-btn');
 
   if (dropArea && fileInput) {
     dropArea.addEventListener('click', () => fileInput.click());
@@ -741,8 +755,37 @@ function initProofUpload(sectionKey, item) {
         item.proofs.push(proof);
         youtubeInput.value = '';
         showToast('YouTube proof added!', 'success');
-        // Refresh proof list display
         refreshProofList(item);
+      }
+    });
+  }
+
+  if (addLinkBtn && linkUrlInput && linkNameInput) {
+    addLinkBtn.addEventListener('click', () => {
+      const url = linkUrlInput.value.trim();
+      let name = linkNameInput.value.trim();
+      if (url) {
+        if (!name) name = 'External Link';
+        let type = 'document';
+        const lowerUrl = url.toLowerCase();
+        if (lowerUrl.match(/\.(jpeg|jpg|gif|png|webp|svg|avif)/)) {
+          type = 'image';
+        } else if (lowerUrl.endsWith('.pdf')) {
+          type = 'pdf';
+        } else if (lowerUrl.match(/\.(mp4|webm|ogg|mov|avi)/)) {
+          type = 'video';
+        }
+
+        const proof = { type, url, name };
+        DataManager.addProof(sectionKey, item.id, proof);
+        item.proofs = item.proofs || [];
+        item.proofs.push(proof);
+        linkUrlInput.value = '';
+        linkNameInput.value = '';
+        showToast('Proof URL added!', 'success');
+        refreshProofList(item);
+      } else {
+        showToast('Please enter a valid URL.', 'warning');
       }
     });
   }
@@ -774,7 +817,6 @@ async function handleProofFiles(files, sectionKey, item) {
       const type = getFileType(file.name);
       let base64;
       if (type === 'image') {
-        // Compress images to save space in localStorage
         base64 = await compressImage(file, 1200, 0.75);
       } else {
         base64 = await fileToBase64(file);
@@ -782,12 +824,18 @@ async function handleProofFiles(files, sectionKey, item) {
       const proof = { type, url: base64, name: file.name };
       const success = DataManager.addProof(sectionKey, item.id, proof);
       if (!success) {
-        showToast(`Failed to upload ${file.name}: Storage limit reached. Try clearing old files.`, 'error');
+        showToast(`Failed to upload ${file.name}: Storage limit reached.`, 'error');
         continue;
       }
       item.proofs = item.proofs || [];
       item.proofs.push(proof);
-      showToast(`Proof "${file.name}" uploaded!`, 'success');
+
+      const config = DataManager.getCloudConfig();
+      if (config.apiKey && config.binId && file.size > 80 * 1024) {
+        showToast(`"${file.name}" uploaded locally. Since it exceeds 80KB, it cannot sync to the 100KB cloud database. We recommend adding it via URL instead!`, 'warning', 7000);
+      } else {
+        showToast(`Proof "${file.name}" uploaded!`, 'success');
+      }
     } catch (err) {
       showToast(`Failed to upload ${file.name}: ${err.message}`, 'error');
     }
@@ -801,7 +849,7 @@ function refreshProofList(item) {
   const proofs = item.proofs || [];
   proofList.innerHTML = proofs.map((proof, index) => `
     <div class="proof-upload-item">
-      <span class="proof-upload-icon">${proof.type === 'image' ? '🖼️' : proof.type === 'pdf' ? '📄' : proof.type === 'youtube' ? '▶️' : '🎥'}</span>
+      <span class="proof-upload-icon">${proof.type === 'image' ? '🖼️' : proof.type === 'pdf' ? '📄' : proof.type === 'youtube' ? '▶️' : '📎'}</span>
       <span class="proof-upload-name">${escapeHtml(proof.name || 'Proof')}</span>
       <button type="button" class="admin-btn admin-btn-small admin-btn-danger proof-remove-btn" data-index="${index}">✕</button>
     </div>
