@@ -96,6 +96,12 @@ export const DataManager = {
         migrated = true;
       }
 
+      // Auto-migrate old email address
+      if (parsed.personal && parsed.personal.email === 'yureshdilshan@gmail.com') {
+        parsed.personal.email = 'yureshdilshan5316@gmail.com';
+        migrated = true;
+      }
+
       // Remove placeholder qualification items from stored data
       const isPlaceholder = (item) =>
         item.title && (

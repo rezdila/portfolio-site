@@ -4,7 +4,7 @@ export const defaultPortfolioData = {
     fullName: 'Yuresh Dilshan',
     title: 'Industrial Mathematics Undergraduate',
     bio: 'A passionate Industrial Mathematics undergraduate at Rajarata University of Sri Lanka with a strong drive for data science, machine learning, and leadership. I combine analytical thinking with hands-on experience in event management, community development, and ML projects — building a career that bridges mathematics, technology, and human impact.',
-    email: 'yureshdilshan@gmail.com',
+    email: 'yureshdilshan5316@gmail.com',
     location: 'Galle, Southern Province, Sri Lanka 🇱🇰',
     profileImage: 'assets/images/profile.png',
     socialLinks: {
