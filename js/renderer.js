@@ -62,6 +62,30 @@ function renderHero(personal) {
   if (bioEl) {
     bioEl.textContent = personal.bio;
   }
+
+  // Dynamic CV link setup
+  const cvBtn = document.getElementById('hero-cv-btn');
+  if (cvBtn) {
+    const cvUrl = personal.cvUrl;
+    if (cvUrl && cvUrl.trim()) {
+      cvBtn.href = cvUrl.trim();
+      if (cvUrl.trim().startsWith('http')) {
+        cvBtn.target = '_blank';
+        cvBtn.rel = 'noopener noreferrer';
+        cvBtn.removeAttribute('download');
+      } else {
+        cvBtn.setAttribute('download', '');
+        cvBtn.removeAttribute('target');
+        cvBtn.removeAttribute('rel');
+      }
+    } else {
+      // Default fallback
+      cvBtn.href = 'assets/cv.pdf';
+      cvBtn.setAttribute('download', '');
+      cvBtn.removeAttribute('target');
+      cvBtn.removeAttribute('rel');
+    }
+  }
 }
 
 /* ========== ABOUT ========== */

@@ -340,6 +340,11 @@ function renderPersonalForm() {
       </div>
 
       <div class="form-group">
+        <label for="personal-cvUrl">CV Download Link (Google Drive shared link, or local path like assets/cv.pdf)</label>
+        <input type="text" id="personal-cvUrl" name="cvUrl" value="${escapeHtml(data.cvUrl || '')}" placeholder="https://drive.google.com/..." />
+      </div>
+
+      <div class="form-group">
         <label>Profile Image</label>
         <div class="file-upload" id="profile-image-upload">
           ${data.profileImage ? `<img src="${data.profileImage}" class="upload-preview" alt="Profile preview" />` : ''}
@@ -409,6 +414,7 @@ function renderPersonalForm() {
       bio: formData.get('bio'),
       email: formData.get('email'),
       location: formData.get('location'),
+      cvUrl: formData.get('cvUrl'),
       socialLinks: {
         linkedin: formData.get('linkedin'),
         github: formData.get('github'),

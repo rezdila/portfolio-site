@@ -16,7 +16,8 @@ export const defaultPortfolioData = {
       tiktok: 'https://vm.tiktok.com/ZS92KYfJHk4Df-KV7F2/',
       whatsapp: 'https://wa.me/qr/CEYUVZ35MLB7I1',
       website: ''
-    }
+    },
+    cvUrl: ''
   },
 
   education: [
