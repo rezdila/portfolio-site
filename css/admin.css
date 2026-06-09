@@ -1234,3 +1234,28 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 600px) {
+  .admin-topbar {
+    padding-left: 64px;
+    padding-right: 12px;
+  }
+  .admin-topbar-btn:not(#save-all-btn) span {
+    display: none;
+  }
+  .admin-topbar-btn:not(#save-all-btn) {
+    padding: 8px 10px;
+  }
+  .admin-topbar__section-title {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 420px) {
+  #save-all-btn span {
+    display: none;
+  }
+  #save-all-btn {
+    padding: 8px 10px;
+  }
+}
