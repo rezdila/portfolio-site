@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Yuresh Dilshan — Aspiring Software Engineer. Explore my portfolio showcasing projects, skills, education, and professional journey." />
+  <meta name="keywords" content="Yuresh Dilshan, portfolio, software engineer, web developer, projects, skills" />
+  <meta name="author" content="Yuresh Dilshan" />
+  <meta name="theme-color" content="#0a0e27" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Yuresh Dilshan | Portfolio" />
+  <meta property="og:description" content="Aspiring Software Engineer — Explore my projects, skills, and professional journey." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yureshdilshan.dev" />
+  <meta property="og:image" content="assets/images/og-preview.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Yuresh Dilshan | Portfolio" />
+  <meta name="twitter:description" content="Aspiring Software Engineer — Explore my projects, skills, and professional journey." />
+
+  <title>Yuresh Dilshan | Portfolio</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/portfolio-site/assets/favicon-BnCewLpJ.svg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <script type="module" crossorigin src="/portfolio-site/assets/main-oagonZTN.js"></script>
+  <link rel="modulepreload" crossorigin href="/portfolio-site/assets/utils-O7gnnfux.js">
+  <link rel="stylesheet" crossorigin href="/portfolio-site/assets/utils-dfIztLL2.css">
+</head>
+
+<body>
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <nav class="nav" id="navbar" aria-label="Primary navigation">
+    <div class="nav__inner container">
+      <!-- Logo / Monogram -->
+      <a href="#hero" class="nav__logo" aria-label="Yuresh Dilshan — Home">
+        <span class="nav__monogram">YD</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav__links" id="nav-links" role="menubar">
+        <li role="none"><a href="#about" class="nav__link" role="menuitem">About</a></li>
+
+        <!-- Present State Dropdown -->
+        <li class="nav__dropdown" role="none">
+          <button class="nav__link nav__dropdown-toggle" role="menuitem" aria-haspopup="true" aria-expanded="false">
+            Present State <span class="nav__chevron">▾</span>
+          </button>
+          <ul class="nav__dropdown-menu" role="menu" aria-label="Present State sub-sections">
+            <li role="none"><a href="#education" class="nav__dropdown-item" role="menuitem">Education</a></li>
+            <li role="none"><a href="#professional-qualifications" class="nav__dropdown-item" role="menuitem">Professional Quals</a></li>
+            <li role="none"><a href="#vocational-qualifications" class="nav__dropdown-item" role="menuitem">Vocational Quals</a></li>
+            <li role="none"><a href="#experience" class="nav__dropdown-item" role="menuitem">Experience</a></li>
+            <li role="none"><a href="#skills" class="nav__dropdown-item" role="menuitem">Skills</a></li>
+            <li role="none"><a href="#competencies" class="nav__dropdown-item" role="menuitem">Competencies</a></li>
+            <li role="none"><a href="#achievements" class="nav__dropdown-item" role="menuitem">Achievements</a></li>
+            <li role="none"><a href="#personality" class="nav__dropdown-item" role="menuitem">Personality</a></li>
+            <li role="none"><a href="#interests" class="nav__dropdown-item" role="menuitem">Interests</a></li>
+            <li role="none"><a href="#swot" class="nav__dropdown-item" role="menuitem">SWOT Analysis</a></li>
+            <li role="none"><a href="#values" class="nav__dropdown-item" role="menuitem">Values</a></li>
+          </ul>
+        </li>
+
+        <!-- Goal Setting Dropdown -->
+        <li class="nav__dropdown" role="none">
+          <button class="nav__link nav__dropdown-toggle" role="menuitem" aria-haspopup="true" aria-expanded="false">
+            Goal Setting <span class="nav__chevron">▾</span>
+          </button>
+          <ul class="nav__dropdown-menu" role="menu" aria-label="Goal Setting sub-sections">
+            <li role="none"><a href="#goals" class="nav__dropdown-item" role="menuitem">SMART &amp; SAFE Goals</a></li>
+            <li role="none"><a href="#gap-analysis" class="nav__dropdown-item" role="menuitem">Gap Analysis</a></li>
+            <li role="none"><a href="#action-plan" class="nav__dropdown-item" role="menuitem">Action Plan</a></li>
+          </ul>
+        </li>
+
+        <li role="none"><a href="#projects" class="nav__link" role="menuitem">Projects</a></li>
+        <li role="none"><a href="#contact" class="nav__link" role="menuitem">Contact</a></li>
+      </ul>
+
+      <!-- Right-side controls -->
+      <div class="nav__actions">
+        <a href="admin.html" class="nav__admin-link" aria-label="Admin panel" title="Admin">⚙️</a>
+        <button class="nav__hamburger" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="nav__mobile-menu" id="mobile-menu" aria-hidden="true">
+      <ul class="nav__mobile-links">
+        <li><a href="#about" class="nav__mobile-link">About</a></li>
+        <li><a href="#education" class="nav__mobile-link">Education</a></li>
+        <li><a href="#professional-qualifications" class="nav__mobile-link">Professional Quals</a></li>
+        <li><a href="#vocational-qualifications" class="nav__mobile-link">Vocational Quals</a></li>
+        <li><a href="#experience" class="nav__mobile-link">Experience</a></li>
+        <li><a href="#skills" class="nav__mobile-link">Skills</a></li>
+        <li><a href="#competencies" class="nav__mobile-link">Competencies</a></li>
+        <li><a href="#achievements" class="nav__mobile-link">Achievements</a></li>
+        <li><a href="#personality" class="nav__mobile-link">Personality</a></li>
+        <li><a href="#interests" class="nav__mobile-link">Interests</a></li>
+        <li><a href="#swot" class="nav__mobile-link">SWOT Analysis</a></li>
+        <li><a href="#values" class="nav__mobile-link">Values</a></li>
+        <li><a href="#goals" class="nav__mobile-link">Goals</a></li>
+        <li><a href="#gap-analysis" class="nav__mobile-link">Gap Analysis</a></li>
+        <li><a href="#action-plan" class="nav__mobile-link">Action Plan</a></li>
+        <li><a href="#projects" class="nav__mobile-link">Projects</a></li>
+        <li><a href="#contact" class="nav__mobile-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════════ -->
+  <main id="main-content">
+
+    <!-- ──────────────── HERO ──────────────── -->
+    <section id="hero" class="hero" aria-label="Introduction">
+      <canvas id="particles-canvas" class="hero__particles" aria-hidden="true"></canvas>
+      <div class="hero__aurora" aria-hidden="true"></div>
+
+      <div class="hero__content container">
+        <p class="hero__greeting reveal">Hello, I'm</p>
+        <h1 class="hero__title reveal">
+          <span class="text-gradient">Yuresh Dilshan</span>
+        </h1>
+        <div class="hero__typewriter reveal" aria-label="Aspiring Software Engineer">
+          <span class="hero__typewriter-prefix">I'm an&nbsp;</span>
+          <span class="hero__typewriter-text" id="typewriter-text" data-text="Industrial Mathematics Student">Industrial Mathematics Student</span>
+          <span class="hero__typewriter-cursor" aria-hidden="true">|</span>
+        </div>
+        <p class="hero__bio reveal" id="hero-bio">
+          Industrial Mathematics undergraduate passionate about data science, machine learning, and leading meaningful change. I blend analytical thinking with hands-on leadership experience across 2+ years of community impact.
+        </p>
+        <div class="hero__cta reveal">
+          <a href="#about" class="btn btn--primary btn--glow">
+            <span>View My Journey</span>
+            <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a href="assets/cv.pdf" class="btn btn--outline" download>
+            <span>Download CV</span>
+            <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <a href="#about" class="hero__scroll-indicator" aria-label="Scroll down">
+        <span class="hero__scroll-text">Scroll</span>
+        <span class="hero__scroll-arrow" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </span>
+      </a>
+    </section>
+
+    <!-- ──────────────── ABOUT ──────────────── -->
+    <section id="about" class="section reveal" aria-labelledby="about-heading">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__tag">Introduction</span>
+          <h2 class="section__title" id="about-heading">About Me</h2>
+          <div class="section__divider"></div>
+        </header>
+
+        <div class="about__grid">
+          <!-- Profile Image -->
+          <div class="about__image-col reveal">
+            <div class="about__image-wrapper">
+              <div class="about__image-glow" aria-hidden="true"></div>
+              <img id="about-profile-image" class="about__image" src="/portfolio-site/assets/profile-B_Bnmon3.png" alt="Yuresh Dilshan — profile photo" loading="lazy" />
+              <div class="about__image-border" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <!-- Bio Text -->
+          <div class="about__text-col reveal">
+            <div class="about__bio" id="about-bio">
+              <p>I'm an aspiring software engineer passionate about creating beautiful, functional, and user-centric digital experiences. Currently pursuing my studies, I dedicate my time to expanding my knowledge across various domains of software development.</p>
+              <p>My journey into tech started with curiosity and has grown into a deep commitment to crafting solutions that make a difference. I believe in continuous learning, clean code, and the power of technology to transform ideas into reality.</p>
+            </div>
+
+            <!-- Social Links -->
+            <div class="about__socials" id="about-socials">
+              <a href="#" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" data-social="linkedin">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="#" class="social-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer" data-social="github">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              </a>
+              <a href="#" class="social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer" data-social="facebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+              </a>
+              <a href="#" class="social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer" data-social="instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </a>
+              <a href="#" class="social-btn" aria-label="Threads" target="_blank" rel="noopener noreferrer" data-social="threads">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16.634 11.237c-.314-3.109-2.02-4.63-4.597-4.63-2.61 0-4.43 1.597-4.43 4.63 0 2.983 1.83 4.606 4.43 4.606 1.487 0 2.67-.48 3.39-1.373l.036-.046 1.94 1.34c-1.045 1.568-2.839 2.409-5.366 2.409-4.148 0-7.04-2.673-7.04-6.936C5 7.152 7.848 4.5 12.037 4.5c4.095 0 7.031 2.68 7.031 6.945v2.338c0 1.096-.653 1.697-1.579 1.697-.84 0-1.412-.486-1.464-1.258V11.25c0-.022-.008-.04-.008-.052-.164-3.056-1.848-4.577-4.435-4.577-2.6 0-4.387 1.578-4.387 4.566 0 2.937 1.795 4.542 4.387 4.542 1.25 0 2.226-.4 2.888-1.157l.032-.038.016.038c.245.584.805 1.066 1.688 1.066 2.1 0 3.864-1.637 3.864-3.876V11.237zm-4.597.514c-1.256 0-2.146-.669-2.146-2.08 0-1.396.89-2.062 2.146-2.062 1.256 0 2.127.666 2.127 2.062 0 1.411-.871 2.08-2.127 2.08z"/></svg>
+              </a>
+              <a href="#" class="social-btn" aria-label="TikTok" target="_blank" rel="noopener noreferrer" data-social="tiktok">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.52-4.06-1.39v7.83c.02 2.55-.88 5.17-2.91 6.74-2.24 1.74-5.4 2.13-7.98 1.05C4.7 23.08 2.52 19.86 2.56 16.48c.02-3.14 2.11-6.17 5.2-7.06 1.05-.3 2.16-.39 3.24-.28v4.06c-.86-.18-1.78-.11-2.58.26-.98.45-1.72 1.44-1.81 2.53-.12 1.42.72 2.87 2.02 3.4 1.27.52 2.84.18 3.73-.83.43-.49.66-1.14.65-1.79V0h.53z"/></svg>
+              </a>
+              <a href="#" class="social-btn" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer" data-social="whatsapp">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 2.766 1.498 4.809 1.499 5.252.002 9.527-4.269 9.53-9.52C21.002 5.86 16.952 2.23 12.012 2.23c-5.242 0-9.516 4.268-9.519 9.521-.001 2.17.575 3.508 1.47 5.06l-.997 3.642 3.784-.992zm11.724-6.837c-.314-.157-1.86-.918-2.175-1.033-.315-.115-.545-.172-.774.172-.23.344-.889 1.118-1.09 1.348-.2.23-.401.258-.715.1a9.004 9.004 0 01-2.653-1.636 9.9 9.9 0 01-1.834-2.284c-.2-.344-.02-.53.15-.701.153-.153.314-.344.471-.516.157-.172.209-.286.315-.487.105-.2.052-.373-.026-.53-.079-.157-.775-1.866-1.06-2.553-.278-.67-.561-.58-.774-.591-.2-.01-.43-.01-.66-.01s-.602.086-.918.43c-.315.344-1.204 1.176-1.204 2.867 0 1.691 1.233 3.325 1.405 3.554.172.23 2.423 3.7 5.87 5.18 2.056.88 2.924.966 3.974.809 1.155-.172 1.86-.717 2.175-1.405.314-.688.314-1.29.219-1.405-.094-.115-.353-.172-.667-.329z"/></svg>
+              </a>
+              <a href="#" class="social-btn" aria-label="Email" data-social="email">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+              </a>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="about__stats" id="about-stats">
+              <div class="stat-card">
+                <span class="stat-card__number" data-count="0">0</span><span class="stat-card__suffix">+</span>
+                <span class="stat-card__label">Projects</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-card__number" data-count="0">0</span><span class="stat-card__suffix">+</span>
+                <span class="stat-card__label">Skills</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-card__number" data-count="0">0</span><span class="stat-card__suffix">+</span>
+                <span class="stat-card__label">Certifications</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         PRESENT STATE SUPER-SECTION
+    ═══════════════════════════════════════════ -->
+    <div id="present-state" class="super-section" aria-labelledby="present-state-heading">
+      <div class="container">
+        <header class="super-section__header reveal">
+          <span class="section__tag">Current Overview</span>
+          <h2 class="super-section__title" id="present-state-heading">Present State — <span class="text-gradient">Where I Am</span></h2>
+          <div class="section__divider"></div>
+        </header>
+      </div>
+
+      <!-- ──── Education ──── -->
+      <section id="education" class="section reveal" aria-labelledby="education-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="education-heading">🎓 Educational Qualifications</h3>
+          </header>
+          <div class="timeline" id="education-timeline">
+            <!-- Populated dynamically by renderer.js -->
+            <div class="timeline__line" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── Professional Qualifications ──── -->
+      <section id="professional-qualifications" class="section reveal" aria-labelledby="profquals-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="profquals-heading">📜 Professional Qualifications</h3>
+          </header>
+          <div class="card-grid" id="professional-quals-grid">
+            <!-- Populated dynamically by renderer.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── Vocational Qualifications ──── -->
+      <section id="vocational-qualifications" class="section reveal" aria-labelledby="vocquals-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="vocquals-heading">🛠️ Vocational Qualifications</h3>
+          </header>
+          <div class="card-grid" id="vocational-quals-grid">
+            <!-- Populated dynamically by renderer.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── Experience ──── -->
+      <section id="experience" class="section reveal" aria-labelledby="experience-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="experience-heading">💼 Experience</h3>
+          </header>
+          <div class="timeline" id="experience-timeline">
+            <div class="timeline__line" aria-hidden="true"></div>
+            <!-- Populated dynamically by renderer.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── Skills ──── -->
+      <section id="skills" class="section reveal" aria-labelledby="skills-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="skills-heading">⚡ Skills</h3>
+          </header>
+
+          <!-- Skills pill cloud — populated by renderer.js -->
+          <div class="skills-cloud" id="skills-container">
+            <!-- Populated dynamically -->
+          </div>
+
+          <!-- Show more toggle -->
+          <div class="skills-show-more" id="skills-show-more" style="display:none;">
+            <button class="btn btn--ghost skills-toggle-btn" id="skills-toggle-btn" aria-expanded="false">
+              <span class="skills-toggle-label">Show all skills</span>
+              <svg class="skills-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── Competencies ──── -->
+      <section id="competencies" class="section reveal" aria-labelledby="competencies-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="competencies-heading">🧩 Competencies</h3>
+          </header>
+          <div class="card-grid card-grid--3" id="competencies-grid">
+            <!-- Populated dynamically by renderer.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── Achievements ──── -->
+      <section id="achievements" class="section reveal" aria-labelledby="achievements-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="achievements-heading">🏆 Achievements</h3>
+          </header>
+          <div class="card-grid" id="achievements-grid">
+            <!-- Populated dynamically by renderer.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── Personality ──── -->
+      <section id="personality" class="section reveal" aria-labelledby="personality-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="personality-heading">🧬 Personality</h3>
+          </header>
+
+          <!-- MBTI Display -->
+          <div class="personality__mbti" id="mbti-display">
+            <div class="mbti__type">
+              <span class="mbti__letter" data-index="0">-</span>
+              <span class="mbti__letter" data-index="1">-</span>
+              <span class="mbti__letter" data-index="2">-</span>
+              <span class="mbti__letter" data-index="3">-</span>
+            </div>
+            <p class="mbti__label" id="mbti-label">Personality type loading…</p>
+            <p class="mbti__description" id="mbti-description"></p>
+          </div>
+
+          <!-- Career Key Display -->
+          <div class="personality__career-key" id="career-key-display">
+            <h4 class="personality__sub-title">Career Key Results</h4>
+            <div class="career-key__results" id="career-key-results">
+              <!-- Populated dynamically by renderer.js -->
+            </div>
+          </div>
+
+          <!-- Proof Gallery -->
+          <div class="proof-gallery" id="personality-proofs">
+            <!-- Populated dynamically by renderer.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── Interests & Hobbies ──── -->
+      <section id="interests" class="section reveal" aria-labelledby="interests-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="interests-heading">🎯 Interests &amp; Hobbies</h3>
+          </header>
+          <div class="card-grid card-grid--4" id="interests-grid">
+            <!-- Populated dynamically by renderer.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── SWOT Analysis ──── -->
+      <section id="swot" class="section reveal" aria-labelledby="swot-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="swot-heading">📊 SWOT Analysis</h3>
+          </header>
+          <div class="swot-grid" id="swot-grid">
+            <!-- Strengths -->
+            <div class="swot-card swot-card--strengths" data-quadrant="strengths">
+              <div class="swot-card__header">
+                <span class="swot-card__icon" aria-hidden="true">💪</span>
+                <h4 class="swot-card__title">Strengths</h4>
+              </div>
+              <ul class="swot-card__list" id="swot-strengths">
+                <!-- Populated dynamically by renderer.js -->
+              </ul>
+            </div>
+            <!-- Weaknesses -->
+            <div class="swot-card swot-card--weaknesses" data-quadrant="weaknesses">
+              <div class="swot-card__header">
+                <span class="swot-card__icon" aria-hidden="true">🔧</span>
+                <h4 class="swot-card__title">Weaknesses</h4>
+              </div>
+              <ul class="swot-card__list" id="swot-weaknesses">
+                <!-- Populated dynamically by renderer.js -->
+              </ul>
+            </div>
+            <!-- Opportunities -->
+            <div class="swot-card swot-card--opportunities" data-quadrant="opportunities">
+              <div class="swot-card__header">
+                <span class="swot-card__icon" aria-hidden="true">🚀</span>
+                <h4 class="swot-card__title">Opportunities</h4>
+              </div>
+              <ul class="swot-card__list" id="swot-opportunities">
+                <!-- Populated dynamically by renderer.js -->
+              </ul>
+            </div>
+            <!-- Threats -->
+            <div class="swot-card swot-card--threats" data-quadrant="threats">
+              <div class="swot-card__header">
+                <span class="swot-card__icon" aria-hidden="true">⚠️</span>
+                <h4 class="swot-card__title">Threats</h4>
+              </div>
+              <ul class="swot-card__list" id="swot-threats">
+                <!-- Populated dynamically by renderer.js -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── Values ──── -->
+      <section id="values" class="section reveal" aria-labelledby="values-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="values-heading">💎 Values</h3>
+          </header>
+          <div class="card-grid card-grid--3" id="values-grid">
+            <!-- Populated dynamically by renderer.js -->
+          </div>
+        </div>
+      </section>
+    </div><!-- /present-state -->
+
+    <!-- ═══════════════════════════════════════════
+         GOAL SETTING SUPER-SECTION
+    ═══════════════════════════════════════════ -->
+    <div id="goal-setting" class="super-section" aria-labelledby="goal-setting-heading">
+      <div class="container">
+        <header class="super-section__header reveal">
+          <span class="section__tag">Future Vision</span>
+          <h2 class="super-section__title" id="goal-setting-heading">Goal Setting — <span class="text-gradient">Where I Want To Be</span></h2>
+          <div class="section__divider"></div>
+        </header>
+      </div>
+
+      <!-- ──── SMART & SAFE Goals ──── -->
+      <section id="goals" class="section reveal" aria-labelledby="goals-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="goals-heading">🎯 SMART &amp; SAFE Goals</h3>
+          </header>
+
+          <!-- Goal Type Toggle -->
+          <div class="tabs" id="goals-tabs" role="tablist" aria-label="Goal type selection">
+            <button class="tab-btn tab-btn--active" role="tab" aria-selected="true" data-goal-type="smart">SMART Goals</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-goal-type="safe">SAFE Goals</button>
+          </div>
+
+          <div class="goals-container" id="goals-container">
+            <!-- Populated dynamically by renderer.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── Gap Analysis ──── -->
+      <section id="gap-analysis" class="section reveal" aria-labelledby="gap-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="gap-heading">📐 Gap Analysis</h3>
+          </header>
+
+          <!-- Gap Type Tabs -->
+          <div class="tabs" id="gap-tabs" role="tablist" aria-label="Gap analysis categories">
+            <button class="tab-btn tab-btn--active" role="tab" aria-selected="true" data-gap="knowledge">Knowledge</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-gap="skills">Skills</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-gap="experience">Experience</button>
+          </div>
+
+          <div class="gap-analysis-container" id="gap-analysis-container">
+            <!-- Populated dynamically by renderer.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── 3-Year Action Plan ──── -->
+      <section id="action-plan" class="section reveal" aria-labelledby="action-plan-heading">
+        <div class="container">
+          <header class="section__subheader">
+            <h3 class="section__subtitle" id="action-plan-heading">🗺️ 3-Year Action Plan</h3>
+          </header>
+
+          <div class="action-plan-timeline" id="action-plan-timeline">
+            <!-- Year 1 -->
+            <div class="action-plan__year" data-year="1">
+              <div class="action-plan__year-header">
+                <span class="action-plan__year-badge">Year 1</span>
+                <h4 class="action-plan__year-title" id="action-plan-y1-title">Foundation</h4>
+              </div>
+              <ul class="action-plan__goals" id="action-plan-y1-goals">
+                <!-- Populated dynamically by renderer.js -->
+              </ul>
+              <div class="action-plan__status" id="action-plan-y1-status">
+                <span class="status-badge status-badge--in-progress">In Progress</span>
+              </div>
+            </div>
+            <!-- Connector -->
+            <div class="action-plan__connector" aria-hidden="true">
+              <svg width="48" height="24" viewBox="0 0 48 24"><path d="M0 12h48" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/><path d="M40 6l8 6-8 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            </div>
+            <!-- Year 2 -->
+            <div class="action-plan__year" data-year="2">
+              <div class="action-plan__year-header">
+                <span class="action-plan__year-badge">Year 2</span>
+                <h4 class="action-plan__year-title" id="action-plan-y2-title">Growth</h4>
+              </div>
+              <ul class="action-plan__goals" id="action-plan-y2-goals">
+                <!-- Populated dynamically by renderer.js -->
+              </ul>
+              <div class="action-plan__status" id="action-plan-y2-status">
+                <span class="status-badge status-badge--upcoming">Upcoming</span>
+              </div>
+            </div>
+            <!-- Connector -->
+            <div class="action-plan__connector" aria-hidden="true">
+              <svg width="48" height="24" viewBox="0 0 48 24"><path d="M0 12h48" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/><path d="M40 6l8 6-8 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            </div>
+            <!-- Year 3 -->
+            <div class="action-plan__year" data-year="3">
+              <div class="action-plan__year-header">
+                <span class="action-plan__year-badge">Year 3</span>
+                <h4 class="action-plan__year-title" id="action-plan-y3-title">Mastery</h4>
+              </div>
+              <ul class="action-plan__goals" id="action-plan-y3-goals">
+                <!-- Populated dynamically by renderer.js -->
+              </ul>
+              <div class="action-plan__status" id="action-plan-y3-status">
+                <span class="status-badge status-badge--upcoming">Upcoming</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div><!-- /goal-setting -->
+
+    <!-- ──────────────── PROJECTS ──────────────── -->
+    <section id="projects" class="section reveal" aria-labelledby="projects-heading">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__tag">Portfolio</span>
+          <h2 class="section__title" id="projects-heading">My Projects</h2>
+          <div class="section__divider"></div>
+        </header>
+
+        <!-- Filter Buttons -->
+        <div class="filter-bar" id="project-filters" role="toolbar" aria-label="Filter projects by category">
+          <button class="filter-btn filter-btn--active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="web">Web</button>
+          <button class="filter-btn" data-filter="mobile">Mobile</button>
+          <button class="filter-btn" data-filter="desktop">Desktop</button>
+          <button class="filter-btn" data-filter="other">Other</button>
+        </div>
+
+        <!-- Project Cards Grid -->
+        <div class="projects-grid" id="projects-grid">
+          <!-- Populated dynamically by renderer.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ──────────────── CONTACT ──────────────── -->
+    <section id="contact" class="section reveal" aria-labelledby="contact-heading">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__tag">Reach Out</span>
+          <h2 class="section__title" id="contact-heading">Get In Touch</h2>
+          <div class="section__divider"></div>
+        </header>
+
+        <div class="contact__grid">
+          <!-- Contact Form -->
+          <div class="contact__form-col reveal">
+            <form class="contact-form glass-card" id="contact-form" action="#" method="POST" novalidate>
+              <div class="form-group">
+                <label for="contact-name" class="form-label">Name</label>
+                <input type="text" id="contact-name" name="name" class="form-input" placeholder="Your name" required autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label for="contact-email" class="form-label">Email</label>
+                <input type="email" id="contact-email" name="email" class="form-input" placeholder="you@example.com" required autocomplete="email" />
+              </div>
+              <div class="form-group">
+                <label for="contact-subject" class="form-label">Subject</label>
+                <input type="text" id="contact-subject" name="subject" class="form-input" placeholder="What is this about?" required />
+              </div>
+              <div class="form-group">
+                <label for="contact-message" class="form-label">Message</label>
+                <textarea id="contact-message" name="message" class="form-input form-textarea" rows="5" placeholder="Write your message…" required></textarea>
+              </div>
+              <button type="submit" class="btn btn--primary btn--glow btn--full">
+                <span>Send Message</span>
+                <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+              <p class="contact-form__status" id="form-status" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <!-- Contact Info & Social -->
+          <div class="contact__info-col reveal">
+            <div class="contact-info glass-card">
+              <h3 class="contact-info__title">Contact Information</h3>
+              <ul class="contact-info__list">
+                <li class="contact-info__item">
+                  <span class="contact-info__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+                  </span>
+                  <div>
+                    <span class="contact-info__label">Email</span>
+                    <a href="mailto:hello@yureshdilshan.dev" class="contact-info__value" id="contact-email-value">hello@yureshdilshan.dev</a>
+                  </div>
+                </li>
+                <li class="contact-info__item">
+                  <span class="contact-info__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  </span>
+                  <div>
+                    <span class="contact-info__label">Location</span>
+                    <span class="contact-info__value" id="contact-location-value">Sri Lanka</span>
+                  </div>
+                </li>
+              </ul>
+
+              <!-- Social Links -->
+              <div class="contact-info__socials">
+                <h4 class="contact-info__social-heading">Find me on</h4>
+                <div class="contact-info__social-links" id="contact-socials">
+                  <!-- Populated dynamically by renderer.js -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- /main-content -->
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="nav__monogram">YD</span>
+        <p class="footer__tagline">Building the future, one line of code at a time.</p>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; <span id="footer-year">2026</span> Yuresh Dilshan. All rights reserved.</p>
+        <p class="footer__made-with">Made with ❤️ and lots of ☕</p>
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       LIGHTBOX OVERLAY
+  ═══════════════════════════════════════════ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
+    <div class="lightbox__backdrop"></div>
+    <div class="lightbox__content">
+      <button class="lightbox__close" aria-label="Close lightbox">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <button class="lightbox__nav lightbox__nav--prev" aria-label="Previous image">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <img class="lightbox__image" id="lightbox-image" src="" alt="Proof attachment" />
+      <button class="lightbox__nav lightbox__nav--next" aria-label="Next image">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <p class="lightbox__caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       FLOATING DOT NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <nav class="dot-nav" id="dot-nav" aria-label="Section navigation">
+    <ul class="dot-nav__list">
+      <li><a href="#hero" class="dot-nav__dot dot-nav__dot--active" aria-label="Hero" data-section="hero"><span class="dot-nav__tooltip">Home</span></a></li>
+      <li><a href="#about" class="dot-nav__dot" aria-label="About" data-section="about"><span class="dot-nav__tooltip">About</span></a></li>
+      <li><a href="#education" class="dot-nav__dot" aria-label="Education" data-section="education"><span class="dot-nav__tooltip">Education</span></a></li>
+      <li><a href="#skills" class="dot-nav__dot" aria-label="Skills" data-section="skills"><span class="dot-nav__tooltip">Skills</span></a></li>
+      <li><a href="#achievements" class="dot-nav__dot" aria-label="Achievements" data-section="achievements"><span class="dot-nav__tooltip">Achievements</span></a></li>
+      <li><a href="#personality" class="dot-nav__dot" aria-label="Personality" data-section="personality"><span class="dot-nav__tooltip">Personality</span></a></li>
+      <li><a href="#swot" class="dot-nav__dot" aria-label="SWOT" data-section="swot"><span class="dot-nav__tooltip">SWOT</span></a></li>
+      <li><a href="#goals" class="dot-nav__dot" aria-label="Goals" data-section="goals"><span class="dot-nav__tooltip">Goals</span></a></li>
+      <li><a href="#action-plan" class="dot-nav__dot" aria-label="Action Plan" data-section="action-plan"><span class="dot-nav__tooltip">Action Plan</span></a></li>
+      <li><a href="#projects" class="dot-nav__dot" aria-label="Projects" data-section="projects"><span class="dot-nav__tooltip">Projects</span></a></li>
+      <li><a href="#contact" class="dot-nav__dot" aria-label="Contact" data-section="contact"><span class="dot-nav__tooltip">Contact</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════════ -->
+
+  <!-- Dynamic footer year fallback -->
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
